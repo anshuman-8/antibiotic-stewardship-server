@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r esm .",
+    "dev": "nodemon -r esm"
   },
   "repository": {
     "type": "git",
@@ -17,13 +19,17 @@
   },
   "homepage": "https://github.com/anshuman-8/antibiotic-stewardship-server#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "consola": "^2.15.3",
     "dotenv": "^16.0.3",
     "esm": "^3.2.25",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.12.1",
     "mongoose": "^6.8.0",
-    "nodemon": "^2.0.20",
     "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

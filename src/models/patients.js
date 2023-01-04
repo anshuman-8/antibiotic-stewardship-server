@@ -54,10 +54,15 @@ const PatientSchema = new Schema({
         type: String,
         required: false
     },
+    hospitalStayLength:{
+        type: Number,
+        required: false
+    },
     admittingDiagnostic:{
         type: String,
         required: false
-    }
+    },
+    
 },{timestamps:true});
 
 const Patient = model('patient', PatientSchema);

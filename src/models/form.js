@@ -11,6 +11,10 @@ const formSchema = new Schema({
         required: true,
         default: Date.now
     },
+    reviewingDepartment:{
+        type: String,
+        required: true
+    },
     cultureSent:{
         type: Boolean,
         required: true

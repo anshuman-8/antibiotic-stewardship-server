@@ -48,4 +48,8 @@ RESISTANCE_CHOICES = [("CRE( Carbapenemase resistant enterobactereciae)", "CRE( 
 ("NA-None of the above", "NA-None of the above"),
 ]
 
-SURITY_CHOICES = [("probable", "probable"), ("definite", "definite"),("NONE", "NONE")]
+DIAGNOSIS_CHOICES = [("probable", "probable"), ("definite", "definite"),("NONE", "NONE")]
+
+PATIENT_LOCATION = [("ICU", "ICU"), ("WARD", "WARD"),("NONE", "NONE")]
+
+PATIENT_OUTCOME = [("DEAD", "DEAD"), ("ALIVE", "ALIVE")]

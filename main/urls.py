@@ -19,6 +19,7 @@ from django.urls import include
 from stewardship.urls import *
 
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
     # path('', include('stewardship.urls')),
 ]

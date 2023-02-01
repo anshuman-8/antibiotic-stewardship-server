@@ -15,12 +15,16 @@ class Patient(models.Model):
     height=models.CharField(max_length=100)
     weight=models.CharField(max_length=100)
 
+    def __str__(self):
+        return (self.fullName+"-"+self.mrdNumber)
+
 
 class AnalysisForm(models.Model):
     date = models.DateField()
+    doctor = models.CharField(max_length=100,default=None)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patientForm = models.ForeignKey("PatientForm", on_delete=models.CASCADE)
-    drugAdministered = models.ManyToManyField("DrugAdministered", blank=True)
+    drugAdministered = models.ManyToManyField("DrugAdministeredReview", blank=True)
     patientOutcome = models.ManyToManyField("PatientOutcome", blank=True)
     compliance = models.ManyToManyField("Compliance", blank=True)
     recommendation = models.ManyToManyField("Recommendation", blank=True)
@@ -52,14 +56,22 @@ class Sepsis(models.Model):
         return self.name
 
 class FocusOfInfection(models.Model):
-    name = models.CharField(max_length=100)
-    
+    isUTI=models.BooleanField(default=False)
+    isCNS=models.BooleanField(default=False)
+    isPneumonia=models.BooleanField(default=False)
+    isSkin=models.BooleanField(default=False)
+    isAbdominal=models.BooleanField(default=False)
+    isPrimaryBacteraemia=models.BooleanField(default=False)
+    isSecondaryBacteraemia=models.BooleanField(default=False)
+    other=models.CharField(max_length=100,default="")
+
     def __str__(self):
-        return self.name
+        return self.other
 
 class CultureReport(models.Model):
     time_sent=models.DateTimeField()
     time_reported=models.DateTimeField()
+    sentBeforeAntibiotic=models.BooleanField(default=False)
     specimen_type=models.CharField(max_length=100, choices=SPECIMEN_CHOICES, default="Select")
     site_of_collection=models.CharField(max_length=100)
     organism=models.CharField(max_length=100)
@@ -67,7 +79,8 @@ class CultureReport(models.Model):
     multi_drug_resistant=models.CharField(max_length=100, choices=MDR_CHOICES, default="Select")
     resistance=models.CharField(max_length=100, choices=RESISTANCE_CHOICES, default="Select")
     Imaging=models.ManyToManyField("Imaging", blank=True)
-    impression=models.CharField(max_length=100)
+    # impression=models.CharField(max_length=100)
+
     def __str__(self):
         return self.specimen_type
 
@@ -108,8 +121,7 @@ class ClinicalSign(models.Model):
     o2_saturation=models.CharField(max_length=100)
 
     def __str__(self):
-        data = {"Date":self.date}
-        return data
+        return self.date.strftime("%d/%m/%Y")
 
 class AntibioticSensitivity(models.Model):
     name = models.CharField(max_length=100, choices=ANTIBIOTIC_CHOICES, default="Select")
@@ -117,8 +129,17 @@ class AntibioticSensitivity(models.Model):
     def __str__(self):
         return self.name
 
-class DrugAdministered(models.Model):
-    name = models.CharField(max_length=100)
+class DrugAdministeredReview(models.Model):
+    isRightDocumentation=models.BooleanField(default=False)
+    isRightDrug=models.BooleanField(default=False)
+    isRightDose=models.BooleanField(default=False)
+    isRightRoute=models.BooleanField(default=False)
+    isRightFrequency=models.BooleanField(default=False)
+    isRightDuration=models.BooleanField(default=False)
+    isRightIndication=models.BooleanField(default=False)
+    isAppropriate=models.BooleanField(default=False)
+    isRightDocumentation=models.BooleanField(default=False)
+    score=models.IntegerField(default=0)
     
     def __str__(self):
         return self.name

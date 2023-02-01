@@ -33,7 +33,7 @@ admin.site.register(ClinicalSign)
 
 admin.site.register(AntibioticSensitivity)
 
-admin.site.register(DrugAdministered)
+admin.site.register(DrugAdministeredReview)
 
 admin.site.register(PatientOutcome)
 

@@ -3,7 +3,6 @@ import graphql_jwt
 from stewardship.graphql.query import UserQuery
 from stewardship.graphql.mutations import Mutation as UserMutation
 
-
 class Query(UserQuery, graphene.ObjectType):
     pass
 

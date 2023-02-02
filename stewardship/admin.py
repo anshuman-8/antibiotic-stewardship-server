@@ -4,12 +4,22 @@ from .models import *
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = ( 'fullName', 'mrdNumber',"dateofAdmission")
+    # list_filter = ('mrdNumber','department','dateofAdmission')
+    search_fields = ('fullName','mrdNumber','dateofAdmission')
 
 class AnalysisFormAdmin(admin.ModelAdmin):
     list_display = ( 'patient', 'date',"patientForm")
 
 class PatientFormAdmin(admin.ModelAdmin):
     list_display = ( 'patient', 'review_date',"review_department")
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ( 'username', 'email',"is_patient","is_doctor","is_nurse","is_admin","is_staff")
+    list_filter = ('is_patient','is_doctor','is_nurse','is_admin')
+    search_fields = ('username','email')
+
+
+admin.site.register(User,UserAdmin)
 
 admin.site.register(Patient, PatientAdmin)
 

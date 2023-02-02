@@ -31,11 +31,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'stewardship.User'
 
 # Application definition
 
 INSTALLED_APPS = [
     'stewardship',
+    'graphene_django',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -72,6 +74,13 @@ TEMPLATES = [
         },
     },
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'main.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
@@ -147,8 +156,7 @@ JET_SIDE_MENU_ITEMS = [
      {
         "label": "Users",
         "items": [
-            {"label": "Users", "name": "auth.user"},
-            # {"label": "Groups", "name": "auth.group"},
+            {"label": "Users", "name": "stewardship.user"},
         ]
     },  # A list of application or custom item dicts
     {

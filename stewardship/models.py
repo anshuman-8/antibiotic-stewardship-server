@@ -1,9 +1,24 @@
 from django.db import models
 from .choice import *
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    id = models.BigAutoField(primary_key=True, null=False)
+    email = models.EmailField(unique=True, null=False, blank=False)
+    username = models.CharField(max_length=100, unique=True)
+    is_patient = models.BooleanField(default=False)
+    is_doctor = models.BooleanField(default=False)
+    is_nurse = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.username
+
 
 class Patient(models.Model):
-    fullName = models.CharField(max_length=100)
-    dob=models.DateField()
+    id = models.BigAutoField(primary_key=True, null=False)
+    fullName = models.CharField(max_length=100,verbose_name="Full Name")
+    dob=models.DateField(default=None)
     mrdNumber=models.CharField(max_length=100)
     dateofAdmission=models.DateField()
     patientLocation=models.CharField(max_length=100, choices=PATIENT_LOCATION, default="Select")
@@ -12,8 +27,8 @@ class Patient(models.Model):
     admittingDoctor=models.CharField(max_length=100)
     diagnostic=models.CharField(max_length=100)
     cormorbodities=models.CharField(max_length=100)
-    height=models.CharField(max_length=100)
-    weight=models.CharField(max_length=100)
+    height=models.CharField(max_length=100, blank=True)
+    weight=models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return (self.fullName+"-"+self.mrdNumber)

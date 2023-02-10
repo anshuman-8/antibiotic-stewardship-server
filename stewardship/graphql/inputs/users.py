@@ -2,6 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from stewardship.models import User
 
+
 class UserCreateInput(graphene.InputObjectType):
     username = graphene.String(required=True)
     email = graphene.String(required=True)

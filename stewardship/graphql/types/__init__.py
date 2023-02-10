@@ -1,5 +1,5 @@
-from .user import UserBasicObj 
+from .user import UserBasicObj
 
 __all__ = [
-    'UserBasicObj',
+    "UserBasicObj",
 ]

@@ -2,6 +2,7 @@ import graphene
 from stewardship.models import User
 from stewardship.graphql.types.user import UserBasicObj
 
+
 class UserQuery(graphene.ObjectType):
     users = graphene.List(UserBasicObj)
     user = graphene.Field(UserBasicObj, id=graphene.ID())
@@ -14,7 +15,7 @@ class UserQuery(graphene.ObjectType):
         return User.objects.all()
 
     def resolve_user(self, info, **kwargs):
-        id = kwargs.get('id')
+        id = kwargs.get("id")
         return User.objects.get(id=id)
 
     def resolve_firstName(self, info):

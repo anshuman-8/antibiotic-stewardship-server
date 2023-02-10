@@ -1,6 +1,5 @@
-from .user import UserQuery 
+from .user import UserQuery
 
 __all__ = [
-    'UserQuery',
-
+    "UserQuery",
 ]

@@ -1,10 +1,8 @@
 import graphene
 from stewardship.models import User
 
-class UserBasicObj(
-    graphene.ObjectType,
-    description='the User object'
-):
+
+class UserBasicObj(graphene.ObjectType, description="the User object"):
     id = graphene.ID()
     userName = graphene.String()
     mrdNumber = graphene.String()
@@ -29,4 +27,3 @@ class UserBasicObj(
             elif self.is_admin:
                 type = "Admin"
             return type
-

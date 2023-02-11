@@ -19,15 +19,13 @@ class PatientFormAdmin(admin.ModelAdmin):
 
 class UserAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "username",
         "email",
-        "is_patient",
-        "is_doctor",
-        "is_nurse",
-        "is_admin",
-        "is_staff",
+        "isAdmin",
+        "isStaff",
     )
-    list_filter = ("is_patient", "is_doctor", "is_nurse", "is_admin")
+    list_filter = ("isStaff", "isAdmin")
     search_fields = ("username", "email")
 
 

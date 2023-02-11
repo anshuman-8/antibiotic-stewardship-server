@@ -4,8 +4,9 @@ from stewardship.models import User
 
 class UserBasicObj(graphene.ObjectType, description="the User object"):
     id = graphene.ID()
-    userName = graphene.String()
-    mrdNumber = graphene.String()
+    username = graphene.String()
+    email = graphene.String()
+    userType = graphene.String()
 
     def resolve_id(self, info):
         if isinstance(self, User):
@@ -18,12 +19,8 @@ class UserBasicObj(graphene.ObjectType, description="the User object"):
     def resolve_userType(self, info):
         if isinstance(self, User):
             type = ""
-            if self.is_patient:
-                type = "Patient"
-            elif self.is_doctor:
-                type = "Doctor"
-            elif self.is_nurse:
-                type = "Nurse"
-            elif self.is_admin:
+            if self.isAdmin:
                 type = "Admin"
+            elif self.isStaff:
+                type = "Staff"
             return type

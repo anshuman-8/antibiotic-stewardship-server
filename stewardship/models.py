@@ -7,10 +7,8 @@ class User(AbstractUser):
     id = models.BigAutoField(primary_key=True, null=False)
     email = models.EmailField(unique=True, null=False, blank=False)
     username = models.CharField(max_length=100, unique=True)
-    is_patient = models.BooleanField(default=False)
-    is_doctor = models.BooleanField(default=False)
-    is_nurse = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
+    isStaff = models.BooleanField(default=False)
+    isAdmin = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
@@ -70,6 +68,7 @@ class PatientForm(models.Model):
 
 
 class Sepsis(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
     def __str__(self):

@@ -17,9 +17,9 @@ class User(AbstractUser):
 class Patient(models.Model):
     id = models.BigAutoField(primary_key=True, null=False)
     fullName = models.CharField(max_length=100, verbose_name="Full Name")
-    dob = models.DateField(default=None)
+    dateOfBirth = models.CharField(max_length=100, default=None)
     mrdNumber = models.CharField(max_length=100)
-    dateofAdmission = models.DateField()
+    dateofAdmission = models.CharField(max_length=100)
     patientLocation = models.CharField(
         max_length=100, choices=PATIENT_LOCATION, default="Select"
     )
@@ -36,7 +36,7 @@ class Patient(models.Model):
 
 
 class AnalysisForm(models.Model):
-    date = models.DateField()
+    date = models.CharField(max_length=100)
     doctor = models.CharField(max_length=100, default=None)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patientForm = models.ForeignKey("PatientForm", on_delete=models.CASCADE)
@@ -48,7 +48,7 @@ class AnalysisForm(models.Model):
 
 class PatientForm(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    review_date = models.DateField()
+    review_date = models.CharField(max_length=100)
     review_department = models.CharField(max_length=100)
     provisional_diagnosis = models.CharField(max_length=200)
     final_diagnosis = models.CharField(max_length=200)
@@ -90,8 +90,8 @@ class FocusOfInfection(models.Model):
 
 
 class CultureReport(models.Model):
-    time_sent = models.DateTimeField()
-    time_reported = models.DateTimeField()
+    time_sent = models.CharField(max_length=100)
+    time_reported = models.CharField(max_length=100)
     sentBeforeAntibiotic = models.BooleanField(default=False)
     specimen_type = models.CharField(
         max_length=100, choices=SPECIMEN_CHOICES, default="Select"
@@ -126,21 +126,21 @@ class Imaging(models.Model):
 
 
 class Antibiotic(models.Model):
-    initial_date = models.DateField()
+    initial_date = models.CharField(max_length=100)
     antibiotic = models.CharField(max_length=100)
     loading_dose = models.IntegerField()
     maintenance_dose = models.IntegerField()
     route = models.CharField(max_length=100)
     frequency = models.IntegerField()
     duration = models.IntegerField()
-    end_date = models.DateField()
+    end_date = models.CharField(max_length=100)
 
     def __str__(self):
         return self.antibiotic
 
 
 class ClinicalSign(models.Model):
-    date = models.DateField()
+    date = models.CharField(max_length=100)
     procalcitonin = models.CharField(max_length=100)
     white_blood_cell = models.CharField(max_length=100)
     neutrophil = models.CharField(max_length=100)
@@ -181,7 +181,7 @@ class DrugAdministeredReview(models.Model):
 
 class PatientOutcome(models.Model):
     lenght_of_stay = models.IntegerField()
-    date_of_discharge = models.DateField()
+    date_of_discharge = models.CharField(max_length=100)
     outcome = models.CharField(
         max_length=100, choices=PATIENT_OUTCOME, default="Select"
     )

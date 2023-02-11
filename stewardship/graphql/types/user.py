@@ -12,9 +12,9 @@ class UserBasicObj(graphene.ObjectType, description="the User object"):
         if isinstance(self, User):
             return self.id
 
-    def resolve_username(self, info):
-        if isinstance(self, User):
-            return self.username
+    # def resolve_username(self, info):
+    #     if isinstance(self, User):
+    #         return self.username
 
     def resolve_userType(self, info):
         if isinstance(self, User):

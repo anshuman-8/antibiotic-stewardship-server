@@ -1,6 +1,7 @@
-from .user import Mutation
+import graphene
+from .user import CreateUser
+from .patient import RegisterPatient
 
-
-__all__ = [
-    "Mutation",
-]
+class Mutations(graphene.ObjectType):
+    createUser = CreateUser.Field()
+    RegisterPatient = RegisterPatient.Field()

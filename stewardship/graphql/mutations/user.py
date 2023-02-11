@@ -33,6 +33,3 @@ class CreateUser(graphene.Mutation, description="Create a user"):
     Output = UserCreationResponse
 
 
-
-class Mutation(graphene.ObjectType):
-    createUser = CreateUser.Field()

@@ -1,14 +1,14 @@
 import graphene
 import graphql_jwt
-from stewardship.graphql.query import UserQuery
-from stewardship.graphql.mutations import Mutation as UserMutation
+from stewardship.graphql.query import UserQuery, PatientQuery
+from stewardship.graphql.mutations import Mutations 
 
 
-class Query(UserQuery, graphene.ObjectType):
+class Query(UserQuery,PatientQuery, graphene.ObjectType):
     pass
 
 
-class Mutation(UserMutation, graphene.ObjectType):
+class Mutation(Mutations, graphene.ObjectType):
     token_auth = graphql_jwt.ObtainJSONWebToken.Field()
     verify_token = graphql_jwt.Verify.Field()
     refresh_token = graphql_jwt.Refresh.Field()

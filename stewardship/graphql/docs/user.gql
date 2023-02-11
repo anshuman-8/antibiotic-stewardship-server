@@ -1,0 +1,33 @@
+query {
+  users {
+    id
+    username
+    email
+    userType
+  }
+}
+
+mutation($username:String!,$password:String!,$email:String!,$isStaff:Boolean!){
+  createUser(
+    inputs:{
+      username:$username,
+      password:$password,
+      email:$email,
+      isStaff:$isStaff
+    }
+  ){
+     success
+    returning {
+      id
+      userName
+      email
+    }
+  }
+}
+
+# {
+#   "username": "Dummy_test",
+#   "password": "asdfghjk",
+#   "email": "testuser@mail.com",
+#   "isStaff": true
+# }

@@ -10,10 +10,12 @@ class PatientRegisterResponse(graphene.ObjectType):
     returning = graphene.Field(PatientObj)
 
 
-class  RegisterPatient(graphene.Mutation, description="Register a patient"):
+class RegisterPatient(graphene.Mutation, description="Register a patient"):
     class Arguments:
         inputs = graphene.Argument(
-            PatientCreateInput, required=True, description="inputs available for creation"
+            PatientCreateInput,
+            required=True,
+            description="inputs available for creation",
         )
 
     def mutate(self, info, inputs: PatientCreateInput):
@@ -29,14 +31,11 @@ class  RegisterPatient(graphene.Mutation, description="Register a patient"):
             cormorbodities=inputs.cormorbodities,
             height=inputs.height,
             weight=inputs.weight,
-
         )
         patient.save()
         return PatientRegisterResponse(success=True, returning=patient)
 
-    
     Output = PatientRegisterResponse
-
 
 
 class Mutation(graphene.ObjectType):

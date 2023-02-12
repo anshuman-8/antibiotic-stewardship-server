@@ -13,4 +13,3 @@ class PatientQuery(graphene.ObjectType):
     def resolve_patient(self, info, **kwargs):
         id = kwargs.get("id")
         return Patient.objects.get(id=id)
-

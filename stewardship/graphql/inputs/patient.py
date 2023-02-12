@@ -9,7 +9,7 @@ class PatientCreateInput(graphene.InputObjectType):
     dateOfBirth = graphene.String(required=True)
     dateOfAdmission = graphene.String(required=True)
     # patient location is enum between ward or icu
-    patientLocation =  graphene.String(required=True)
+    patientLocation = graphene.String(required=True)
     department = graphene.String(required=True)
     admittingDoctor = graphene.String(required=True)
     diagnostic = graphene.String(required=True)
@@ -17,4 +17,3 @@ class PatientCreateInput(graphene.InputObjectType):
     height = graphene.Int()
     weight = graphene.Int()
     # patientLocation = graphene.String()
-

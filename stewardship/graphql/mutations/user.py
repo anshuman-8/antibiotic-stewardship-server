@@ -29,7 +29,4 @@ class CreateUser(graphene.Mutation, description="Create a user"):
         user.save()
         return UserCreationResponse(success=True, returning=user)
 
-    
     Output = UserCreationResponse
-
-

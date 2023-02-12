@@ -12,7 +12,7 @@ urlpatterns = [
     path("jet/", include("jet.urls", "jet")),  # Django JET URLS
     path("admin/", admin.site.urls),
     path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path('', views.index, name='index'),
+    path("", views.index, name="index"),
 ]
 
 

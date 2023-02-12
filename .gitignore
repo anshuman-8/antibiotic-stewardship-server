@@ -138,4 +138,4 @@ GitHub.sublime-settings
 
 staticfiles
 
-./db.sqlite3
+db.sqlite3

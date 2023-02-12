@@ -13,4 +13,3 @@ class UserQuery(graphene.ObjectType):
     def resolve_user(self, info, **kwargs):
         id = kwargs.get("id")
         return User.objects.get(id=id)
-

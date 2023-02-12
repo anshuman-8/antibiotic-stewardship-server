@@ -1,10 +1,10 @@
 import graphene
 import graphql_jwt
 from stewardship.graphql.query import UserQuery, PatientQuery
-from stewardship.graphql.mutations import Mutations 
+from stewardship.graphql.mutations import Mutations
 
 
-class Query(UserQuery,PatientQuery, graphene.ObjectType):
+class Query(UserQuery, PatientQuery, graphene.ObjectType):
     pass
 
 

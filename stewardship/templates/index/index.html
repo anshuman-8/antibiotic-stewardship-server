@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Amrita Antibiotic Stewardship Project</title>
+  <style>
+    body {
+      {% comment %} background-image: url('https://i.ibb.co/VxZvzvZ/medicine.jpg'); {% endcomment %}
+      background-size: cover;
+      font-family: sans-serif;
+      background-color: #1c1f26;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: white;
+      text-shadow: 1px 1px #333;
+      margin-bottom: 2rem;
+      font-size: 3em;
+    }
+    h2 {
+      color: white;
+      text-shadow: 1px 1px #333;
+      font-size: 2em;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      width: 80%;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .grid a {
+      width: 30%;
+      text-align: center;
+      margin-bottom: 2rem;
+      margin-right: 2rem;
+      margin-left: 2rem;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 5px;
+      background-color: rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      font-size: 1.5em;
+      display: block;
+      margin: 5px;
+    }
+    a:hover {
+      background-color: rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Amrita Antibiotic Stewardship Project</h1>
+    <h2>Server</h2>
+    <div class="grid">
+      <a href="https://github.com/anshuman-8" target="_blank">Developer Github</a>
+      <a href="https://github.com/anshuman-8/antibiotic-stewardship-server" target="_blank">Project Github</a>
+      <a href="https://amrita-antibiotic-stewardship.vercel.app/" target="_blank">Website</a>
+      <a href="/admin">Admin Page</a>
+    </div>
+  </div>
+</body>
+</html>

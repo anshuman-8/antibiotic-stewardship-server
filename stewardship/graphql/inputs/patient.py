@@ -16,4 +16,6 @@ class PatientCreateInput(graphene.InputObjectType):
     cormorbodities = graphene.String(required=True)
     height = graphene.Int()
     weight = graphene.Int()
+    # gender = graphene.String(required=True)
+
     # patientLocation = graphene.String()

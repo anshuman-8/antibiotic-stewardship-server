@@ -31,6 +31,8 @@ class RegisterPatient(graphene.Mutation, description="Register a patient"):
             cormorbodities=inputs.cormorbodities,
             height=inputs.height,
             weight=inputs.weight,
+            # gender=inputs.gender,
+            active=True,
         )
         patient.save()
         return PatientRegisterResponse(success=True, returning=patient)

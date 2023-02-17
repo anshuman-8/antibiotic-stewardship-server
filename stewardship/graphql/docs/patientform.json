@@ -1,0 +1,64 @@
+"formInput":{
+    "patient":"3",
+    "reviewDate":"23-2-23",
+    "reviewDepartment":"Cardiac Department",
+    "provisionalDiagnosis": "provisional diagnosis",
+    "finalDiagnosis": "finalDiagnosis",
+    "syndromicDiagnosis":"syndromicdiagnosis",
+    "diagnosisChoice" : "diagnosischoice",
+    "sepsis" : {
+      "isSepsis" : true,
+      "isSepticShock" : false,
+      "isNeutropenicSepsis" : true
+    },
+    "focusOfInfection" : {
+      "isUTI" : true,
+      "isCNS" : true,
+      "isPneumonia" : true,
+      "isSkin" : true,
+      "isAbdominal" : true,
+      "isPrimaryBacteraemia" : false,
+      "isSecondaryBacteraemia" : false,
+      "other" : "this is foi others"
+    },
+    "cultureReport" : [{
+      "timeSent" : "34:34",
+      "timeReported" : "3:33:45",
+      "sentBeforeAntibiotic": true,
+      "specimenType" : "specimen type",
+      "siteOfCollection" : "site of collection",
+      "organism" : "organism",
+      "antibioticSensitivity" : ["sen1","sen2"],
+      "multiDrugResistant" : "multi drug resis",
+      "resistance" : "resistance",
+      "Imaging" : {
+        "isxRay" : true,
+        "isUltraSound" : false,
+        "isCTScan" : false,
+        "isMRI" : true,
+        "isPETScan" : true,
+        "impression" : true
+      }
+    }],
+    "antbioticUsed" : [{
+      "initialDate": "3:42:34",
+      "antibiotic": "antibiotic",
+      "loadingDose": "loading dose",
+      "maintenanceDose": "maintenance dose",
+      "route": "route",
+      "frequency": "frequency",
+      "duration": "duration",
+      "endDate": "2:34:23"
+    }],
+    "clinicalSign" : [{
+      "date":  "3:42:34",
+      "procalcitonin": "precalcitonine",
+      "whiteBloodCell": "wbc",
+      "neutrophil": "neutrophil",
+      "sCreatinine": "s clearance",
+      "cratinineClearance": "cratinine clearance",
+      "temperature": "temp",
+      "bloodPressure": "bp",
+      "o2Saturation": "o2 stau"
+    }]
+  }

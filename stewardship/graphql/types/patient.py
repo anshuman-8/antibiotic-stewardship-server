@@ -16,6 +16,8 @@ class PatientObj(graphene.ObjectType, description="the Patient object"):
     cormorbodities = graphene.String()
     height = graphene.String()
     weight = graphene.String()
+    # gender = graphene.String()
+    active = graphene.Boolean()
     # patientLocation = graphene.String()
 
     def resolve_dateOfBirth(self, info):

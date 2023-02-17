@@ -39,6 +39,6 @@ mutation($input:PatientCreateInput!) {
 #   "diagnostic":"Surgery",
 #   "cormorbodities":"High cholistrol",
 #   "height":175,
-#   "weight":72
+#   "weight":72,
 # }
 # }

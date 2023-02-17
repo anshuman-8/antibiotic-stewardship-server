@@ -75,8 +75,10 @@ DIAGNOSIS_CHOICES = [
     ("NONE", "NONE"),
 ]
 
+PATIENT_GENDER = [("Male", "Male"), ("Female", "Female"), ("Others", "Others")]
+
 PATIENT_LOCATION = [("ICU", "ICU"), ("WARD", "WARD"), ("NONE", "NONE")]
 
 PATIENT_OUTCOME = [("DEAD", "DEAD"), ("ALIVE", "ALIVE")]
 
-PATIENT_OUTCOME = [("DEAD", "DEAD"), ("ALIVE", "ALIVE")]
+# PATIENT_OUTCOME = [("DEAD", "DEAD"), ("ALIVE", "ALIVE")]

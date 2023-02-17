@@ -31,6 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    # 'https://www.example.com',
+]
+
 AUTH_USER_MODEL = "stewardship.User"
 
 # Application definition
@@ -38,6 +44,7 @@ AUTH_USER_MODEL = "stewardship.User"
 INSTALLED_APPS = [
     "stewardship",
     "graphene_django",
+    "corsheaders",  # to be removed in production
     "jet",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -51,6 +58,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # to be removed in production
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -175,8 +183,6 @@ JET_SIDE_MENU_ITEMS = [
             {"label": "Patient Data", "name": "stewardship.patient"},
             {"label": "Data collection Form", "name": "stewardship.patientform"},
             {"label": "Analysis Form", "name": "stewardship.analysisform"},
-            # {"label": "Stewardship Status", "name": "stewardship.stewardshipstatus"},
-            # {"label": "Stewardship Status Type", "name": "stewardship.stewardshipstatustype"},
         ],
     },
 ]

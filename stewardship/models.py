@@ -43,9 +43,13 @@ class AnalysisForm(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patientForm = models.ForeignKey("PatientForm", on_delete=models.CASCADE)
     drugAdministered = models.ManyToManyField("DrugAdministeredReview", blank=True)
-    patientOutcome = models.ManyToManyField("PatientOutcome", blank=True)
-    compliance = models.ManyToManyField("Compliance", blank=True)
-    recommendation = models.ManyToManyField("Recommendation", blank=True)
+    patientOutcome = models.ForeignKey(
+        "PatientOutcome", blank=True, on_delete=models.CASCADE
+    )
+    compliance = models.ForeignKey("Compliance", blank=True, on_delete=models.CASCADE)
+    recommendation = models.ForeignKey(
+        "Recommendation", blank=True, on_delete=models.CASCADE
+    )
 
 
 class PatientForm(models.Model):
@@ -56,14 +60,18 @@ class PatientForm(models.Model):
     final_diagnosis = models.CharField(max_length=200)
     syndromic_diagnosis = models.CharField(max_length=200)
     diagnosis_choice = models.CharField(
-        max_length=100, choices=DIAGNOSIS_CHOICES, default="Select"
+        max_length=100, choices=DIAGNOSIS_CHOICES, default="null"
     )
-    sepsis = models.ManyToManyField("Sepsis", blank=True)
-    focus_of_infection = models.ManyToManyField("FocusOfInfection", blank=True)
+    sepsis = models.ForeignKey("Sepsis", blank=True, on_delete=models.CASCADE)
+    focus_of_infection = models.ForeignKey(
+        "FocusOfInfection", blank=True, on_delete=models.CASCADE
+    )
     cultureReport = models.BooleanField()
-    culture_report = models.ManyToManyField("CultureReport", blank=True)
-    antibiotic_used = models.ManyToManyField("Antibiotic", blank=True)
-    clinical_signs = models.ManyToManyField("ClinicalSign", blank=True)
+    culture_report = models.ManyToManyField("CultureReport", blank=True, default=[])
+    antibiotic_used = models.ManyToManyField("Antibiotic", blank=True ,default=[])
+    clinical_signs = models.ForeignKey(
+        "ClinicalSign", blank=True, on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.patient.fullName
@@ -76,7 +84,7 @@ class Sepsis(models.Model):
     isNeutropenicSepsis = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
 
 class FocusOfInfection(models.Model):
@@ -102,19 +110,23 @@ class CultureReport(models.Model):
     )
     site_of_collection = models.CharField(max_length=100)
     organism = models.CharField(max_length=100)
-    antibiotic_sensitivity = models.ManyToManyField("AntibioticSensitivity", blank=True)
+    antibiotic_sensitivity = models.ManyToManyField(
+        "AntibioticSensitivity", blank=True, default=[]
+    )
     multi_drug_resistant = models.CharField(
         max_length=100, choices=MDR_CHOICES, default="Select"
     )
     resistance = models.CharField(
         max_length=100, choices=RESISTANCE_CHOICES, default="Select"
     )
-    Imaging = models.ManyToManyField("Imaging", blank=True)
+    Imaging = models.ForeignKey("Imaging", blank=True, on_delete=models.CASCADE)
 
     # impression=models.CharField(max_length=100)
 
     def __str__(self):
-        return self.specimen_type
+        data = self.organism + " " + self.specimen_type
+        # data = self.organism
+        return data
 
 
 class Imaging(models.Model):
@@ -155,10 +167,11 @@ class ClinicalSign(models.Model):
     o2_saturation = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.date.strftime("%d/%m/%Y")
+        return self.date
 
 
 class AntibioticSensitivity(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(
         max_length=100, choices=ANTIBIOTIC_CHOICES, default="Select"
     )
@@ -196,6 +209,7 @@ class PatientOutcome(models.Model):
 
 
 class Compliance(models.Model):
+    id = models.AutoField(primary_key=True)
     serum_creatinine = models.IntegerField
     procalcitonin = models.IntegerField
     # compliance_choice=models.CharField(max_length=100)

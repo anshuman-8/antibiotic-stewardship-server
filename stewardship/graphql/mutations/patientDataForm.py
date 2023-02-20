@@ -71,7 +71,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 time_reported=culture_report_input.timeReported,
                 sentBeforeAntibiotic=culture_report_input.sentBeforeAntibiotic,
                 Imaging=imaging,
-                # antibiotic_sensitivity=antibioticSensitivityList
             )
             culture_report.antibiotic_sensitivity.set(antibioticSensitivityList)
             culture_reports.append(culture_report)
@@ -105,10 +104,16 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
         try:
             patientForm = PatientForm.objects.create(
                 patient=patientObject,
+                review_date=inputs.reviewDate,
+                review_department=inputs.reviewDepartment,
+                provisional_diagnosis=inputs.provisionalDiagnosis,
+                final_diagnosis=inputs.finalDiagnosis,
+                syndromic_diagnosis=inputs.syndromicDiagnosis,
+                diagnosis_choice=inputs.diagnosisChoice,
                 focus_of_infection=focusOfInfection,
                 sepsis=sepsis,
                 clinical_signs=clinical_signs,
-                cultureReport =True
+                isculture_report = True
             )
             patientForm.culture_report.set(culture_reports)
             patientForm.antibiotic_used.set(antibiotics_used)

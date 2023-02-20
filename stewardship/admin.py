@@ -5,7 +5,6 @@ from .models import *
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = ("fullName", "mrdNumber", "dateofAdmission")
-    # list_filter = ('mrdNumber','department','dateofAdmission')
     search_fields = ("fullName", "mrdNumber", "dateofAdmission")
 
 
@@ -14,7 +13,12 @@ class AnalysisFormAdmin(admin.ModelAdmin):
 
 
 class PatientFormAdmin(admin.ModelAdmin):
-    list_display = ("patient", "review_date", "review_department")
+    list_display = (
+        "id",
+        "patient",
+        "review_date"
+    )
+    search_fields = ("patient", "review_date", "review_department", "provisional_diagnosis")
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -35,9 +39,9 @@ admin.site.register(Patient, PatientAdmin)
 
 admin.site.register(AnalysisForm, AnalysisFormAdmin)
 
-admin.site.register(Recommendation)
+admin.site.register(PatientForm, PatientFormAdmin)
 
-admin.site.register(PatientForm)
+admin.site.register(Recommendation)
 
 admin.site.register(Sepsis)
 

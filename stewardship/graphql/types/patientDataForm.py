@@ -44,7 +44,6 @@ class AntibioticSensitivityObj(
 ):
     id = graphene.ID()
     antibiotic = graphene.String()
-    # sensitivity = graphene.String()
 
 
 class CultureReportObj(graphene.ObjectType, description="Culture Report object"):
@@ -55,10 +54,16 @@ class CultureReportObj(graphene.ObjectType, description="Culture Report object")
     specimen_type = graphene.String()
     site_of_collection = graphene.String()
     organism = graphene.String()
-    antibiotic_sensitivity = graphene.List(AntibioticSensitivityObj)
+    antibiotic_sensitivity = graphene.List(lambda: AntibioticSensitivityObj)
     multi_drug_resistant = graphene.String()
     resistance = graphene.String()
-    Imaging = graphene.List(ImagingObj)
+    Imaging = graphene.Field(lambda: ImagingObj)
+
+    def resolve_antibiotic_sensitivity(self, info):
+        return self.antibiotic_sensitivity.all()
+
+    def resolve_Imaging(self, info):
+        return self.Imaging
 
 
 class AntibioticObj(graphene.ObjectType, description="Antibiotic object"):
@@ -88,7 +93,6 @@ class ClinicalSignObj(graphene.ObjectType, description="Clinical Sign object"):
 
 # Main PatientDataForm object
 
-
 class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm object"):
     id = graphene.ID()
     patient = graphene.Field(lambda: PatientObj)
@@ -98,30 +102,19 @@ class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm o
     final_diagnosis = graphene.String()
     syndromic_diagnosis = graphene.String()
     diagnosis_choice = graphene.String()
-    sepsis = graphene.List(lambda: SepsisObj)
-    focus_of_infection = graphene.List(lambda: FocusOfInfectionObj)
-    culture_report = graphene.Boolean()
-    culture_reports = graphene.List(lambda: CultureReportObj)
+    sepsis = graphene.Field(lambda: SepsisObj)
+    focus_of_infection = graphene.Field(lambda: FocusOfInfectionObj)
+    isculture_report = graphene.Boolean()
+    culture_report = graphene.List(lambda: CultureReportObj)
     antibiotics_used = graphene.List(lambda: AntibioticObj)
-    clinical_signs = graphene.List(lambda: ClinicalSignObj)
-
-    def resolve_diagnosis_choice(self, info):
-        return self.diagnosis_choice
-
-    def resolve_sepsis(self, info):
-        return self.sepsis.all()
+    clinical_signs = graphene.Field(lambda: ClinicalSignObj)
 
     def resolve_focus_of_infection(self, info):
         return self.focus_of_infection.all()
 
     def resolve_culture_report(self, info):
-        return self.culture_report
-
-    def resolve_culture_reports(self, info):
         return self.culture_report.all()
+
 
     def resolve_antibiotics_used(self, info):
         return self.antibiotic_used.all()
-
-    def resolve_clinical_signs(self, info):
-        return self.clinical_signs.all()

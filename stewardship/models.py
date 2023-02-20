@@ -66,7 +66,7 @@ class PatientForm(models.Model):
     focus_of_infection = models.ForeignKey(
         "FocusOfInfection", blank=True, on_delete=models.CASCADE
     )
-    cultureReport = models.BooleanField()
+    isculture_report = models.BooleanField()
     culture_report = models.ManyToManyField("CultureReport", blank=True, default=[])
     antibiotic_used = models.ManyToManyField("Antibiotic", blank=True ,default=[])
     clinical_signs = models.ForeignKey(
@@ -121,7 +121,6 @@ class CultureReport(models.Model):
     )
     Imaging = models.ForeignKey("Imaging", blank=True, on_delete=models.CASCADE)
 
-    # impression=models.CharField(max_length=100)
 
     def __str__(self):
         data = self.organism + " " + self.specimen_type
@@ -212,14 +211,13 @@ class Compliance(models.Model):
     id = models.AutoField(primary_key=True)
     serum_creatinine = models.IntegerField
     procalcitonin = models.IntegerField
-    # compliance_choice=models.CharField(max_length=100)
     isAppropriate = models.BooleanField(default=False)
     isRightDocumentation = models.BooleanField(default=False)
     isRecommendationFiled = models.BooleanField(default=True)
     isAntibioticChanged = models.BooleanField(default=False)
     isComplance = models.BooleanField(default=False)
     isDuration = models.BooleanField(default=False)
-    isAntibioticDoseChanged = models.BooleanField(default=False)
+    isAntibiotisculture_reporticDoseChanged = models.BooleanField(default=False)
 
     def __str__(self):
         return self.serum_creatinine

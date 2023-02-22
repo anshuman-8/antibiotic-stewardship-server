@@ -34,7 +34,6 @@ ALLOWED_HOSTS = []
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    # 'https://www.example.com',
 ]
 
 AUTH_USER_MODEL = "stewardship.User"

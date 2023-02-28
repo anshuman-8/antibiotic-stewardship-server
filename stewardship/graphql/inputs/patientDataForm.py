@@ -13,7 +13,7 @@ class ImagingInput(graphene.InputObjectType):
 
 
 class AntibioticSensitivityInput(graphene.InputObjectType):
-    name = graphene.String()
+    antibiotic = graphene.String()
 
 
 class CultureReportInput(graphene.InputObjectType):
@@ -43,6 +43,7 @@ class FocusOfInfectionInput(graphene.InputObjectType):
     isAbdominal = graphene.Boolean()
     isPrimaryBacteraemia = graphene.Boolean()
     isSecondaryBacteraemia = graphene.Boolean()
+    isCatheterLinesStents = graphene.Boolean()
     other = graphene.String()
 
 
@@ -81,4 +82,4 @@ class PatientFormInput(graphene.InputObjectType):
     focusOfInfection = graphene.Field(FocusOfInfectionInput)
     cultureReport = graphene.List(CultureReportInput)
     antibioticUsed = graphene.List(AntibioticInput)
-    clinicalSign = graphene.Field(ClinicalSignInput)
+    clinicalSign = graphene.List(ClinicalSignInput)

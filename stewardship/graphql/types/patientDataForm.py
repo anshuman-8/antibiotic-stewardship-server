@@ -26,6 +26,7 @@ class FocusOfInfectionObj(graphene.ObjectType, description="Focus of Infection o
     isAbdominal = graphene.Boolean()
     isPrimaryBacteraemia = graphene.Boolean()
     isSecondaryBacteraemia = graphene.Boolean()
+    isCatheterLinesStents = graphene.Boolean()
     other = graphene.String()
 
 
@@ -93,6 +94,7 @@ class ClinicalSignObj(graphene.ObjectType, description="Clinical Sign object"):
 
 # Main PatientDataForm object
 
+
 class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm object"):
     id = graphene.ID()
     patient = graphene.Field(lambda: PatientObj)
@@ -109,12 +111,8 @@ class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm o
     antibiotics_used = graphene.List(lambda: AntibioticObj)
     clinical_signs = graphene.Field(lambda: ClinicalSignObj)
 
-    def resolve_focus_of_infection(self, info):
-        return self.focus_of_infection.all()
-
     def resolve_culture_report(self, info):
         return self.culture_report.all()
-
 
     def resolve_antibiotics_used(self, info):
         return self.antibiotic_used.all()

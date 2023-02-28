@@ -4,7 +4,7 @@ from stewardship.graphql.query import UserQuery, PatientQuery, PatientDataFormQu
 from stewardship.graphql.mutations import Mutations
 
 
-class Query(UserQuery, PatientQuery,PatientDataFormQuery, graphene.ObjectType):
+class Query(UserQuery, PatientQuery, PatientDataFormQuery, graphene.ObjectType):
     pass
 
 

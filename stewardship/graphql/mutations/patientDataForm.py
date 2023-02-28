@@ -46,6 +46,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             isAbdominal=inputs.focusOfInfection.isAbdominal,
             isPrimaryBacteraemia=inputs.focusOfInfection.isPrimaryBacteraemia,
             isSecondaryBacteraemia=inputs.focusOfInfection.isSecondaryBacteraemia,
+            isCatheterLinesStents=inputs.focusOfInfection.isCatheterLinesStents,
             other=inputs.focusOfInfection.other,
         )
 
@@ -62,7 +63,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             antibioticSensitivityList = []
             for antibiotics in culture_report_input.antibioticSensitivity:
                 antibioticSensitivity = AntibioticSensitivity.objects.create(
-                    name=antibiotics,
+                    antibiotic=antibiotics,
                 )
                 antibioticSensitivityList.append(antibioticSensitivity)
 
@@ -89,18 +90,34 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             )
             antibiotics_used.append(antibiotic_used)
 
-        clinical_signs = ClinicalSign.objects.create(
-            date=inputs.clinicalSign.date,
-            procalcitonin=inputs.clinicalSign.procalcitonin,
-            white_blood_cell=inputs.clinicalSign.whiteBloodCell,
-            neutrophil=inputs.clinicalSign.neutrophil,
-            s_creatinine=inputs.clinicalSign.sCreatinine,
-            cratinine_clearance=inputs.clinicalSign.cratinineClearance,
-            o2_saturation=inputs.clinicalSign.o2Saturation,
-            blood_pressure=inputs.clinicalSign.bloodPressure,
-            temperature=inputs.clinicalSign.temperature,
-        )
+        clinical_signsList = []
+        for clinical_signs_input in inputs.clinicalSign:
+            clinical_signs = ClinicalSign.objects.create(
+                date=clinical_signs_input.date,
+                patientId=patientObject,
+                procalcitonin=clinical_signs_input.procalcitonin,
+                white_blood_cell=clinical_signs_input.whiteBloodCell,
+                neutrophil=clinical_signs_input.neutrophil,
+                s_creatinine=clinical_signs_input.sCreatinine,
+                cratinine_clearance=clinical_signs_input.cratinineClearance,
+                o2_saturation=clinical_signs_input.o2Saturation,
+                blood_pressure=clinical_signs_input.bloodPressure,
+                temperature=clinical_signs_input.temperature,
+            )
+            clinical_signsList.append(clinical_signs)
 
+        # clinical_signs = ClinicalSign.objects.create(
+        #     date=inputs.clinicalSign.date,
+        #     patientId = patientObject,
+        #     procalcitonin=inputs.clinicalSign.procalcitonin,
+        #     white_blood_cell=inputs.clinicalSign.whiteBloodCell,
+        #     neutrophil=inputs.clinicalSign.neutrophil,
+        #     s_creatinine=inputs.clinicalSign.sCreatinine,
+        #     cratinine_clearance=inputs.clinicalSign.cratinineClearance,
+        #     o2_saturation=inputs.clinicalSign.o2Saturation,
+        #     blood_pressure=inputs.clinicalSign.bloodPressure,
+        #     temperature=inputs.clinicalSign.temperature,
+        # )
         try:
             patientForm = PatientForm.objects.create(
                 patient=patientObject,
@@ -112,12 +129,12 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 diagnosis_choice=inputs.diagnosisChoice,
                 focus_of_infection=focusOfInfection,
                 sepsis=sepsis,
-                clinical_signs=clinical_signs,
-                isculture_report = True
+                clinical_signs=clinical_signsList[0],
+                isculture_report=True,
             )
             patientForm.culture_report.set(culture_reports)
             patientForm.antibiotic_used.set(antibiotics_used)
-            print("Alert reached",patientForm)
+            print("Alert reached", patientForm)
 
         except Exception as e:
             print("Error: ", e)

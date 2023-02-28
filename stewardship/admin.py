@@ -13,12 +13,13 @@ class AnalysisFormAdmin(admin.ModelAdmin):
 
 
 class PatientFormAdmin(admin.ModelAdmin):
-    list_display = (
-        "id",
+    list_display = ("id", "patient", "review_date")
+    search_fields = (
         "patient",
-        "review_date"
+        "review_date",
+        "review_department",
+        "provisional_diagnosis",
     )
-    search_fields = ("patient", "review_date", "review_department", "provisional_diagnosis")
 
 
 class UserAdmin(admin.ModelAdmin):

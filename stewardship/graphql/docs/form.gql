@@ -1,0 +1,118 @@
+mutation($input:PatientFormInput!){
+  patientDataForm(inputs:$input){
+    success
+    returning{
+      id
+      patient{
+        fullName
+        mrdNumber
+      }
+      reviewDate
+      reviewDepartment
+      provisionalDiagnosis
+      finalDiagnosis
+      syndromicDiagnosis
+      diagnosisChoice
+      sepsis{
+        id
+        isSepsis
+      }
+      focusOfInfection{
+        id
+        isAbdominal
+        isUTI
+        isPneumonia
+        other
+      }
+      iscultureReport
+      cultureReport{
+        specimenType
+        organism
+        siteOfCollection
+        timeReported
+      }
+      antibioticsUsed{
+        id
+        initialDate
+        loadingDose
+        maintenanceDose
+        route
+        duration
+      }
+      clinicalSigns{
+        date
+        whiteBloodCell
+        sCreatinine
+        temperature
+        o2Saturation
+      }
+    }
+  }
+}
+
+# {
+#   "input" : {
+#     "patient":1,
+#     "reviewDate":"1677510595096",
+#     "reviewDepartment" : "Cardac",
+#     "provisionalDiagnosis" : "prov diag",
+#     "finalDiagnosis" : "fina diag",
+#     "syndromicDiagnosis" : "syn diagnosis",
+#     "diagnosisChoice" : "probable",
+#     "sepsis" : {
+#       "isSepsis": true,
+#       "isSepticShock": true,
+#       "isNeutropenicSepsis" : true
+#     },
+#     "focusOfInfection": {
+#       "isUTI":true,
+#       "isCNS":true,
+#       "isSkin":true,
+#       "isAbdominal":false,
+#       "isPneumonia": true,
+#       "isSecondaryBacteraemia":false,
+#       "isPrimaryBacteraemia" : true,
+#       "isCatheterLinesStents": false,
+#       "other" : "others"
+#     },
+#     "cultureReport" : [{
+#       "timeSent" : "1677510595096",
+#       "timeReported": "1677510595096",
+#       "sentBeforeAntibiotic" : true,
+#       "specimenType" : "spec type",
+#       "siteOfCollection" : "site of collection", 
+#       "organism":"orgnanism",
+#       "antibioticSensitivity" : [{"name":"asd"},{"name":"fwefwe"}],
+#       "resistance" : "resis",
+#       "Imaging" : {
+#         "isxRay" : true,
+#         "isUltraSound" : true,
+#         "isPETScan" : true,
+#         "isCTScan" : false,
+#         "isMRI" : true,
+#         "impression" : "the impression"
+#       }
+#     }],
+#     "antibioticUsed" : [{
+#       "initialDate": "1677510595096",
+#       "antibiotic" : "antibbi",
+#       "loadingDose": 23,
+#       "maintenanceDose" : 23,
+#       "route" : "iv",
+#       "frequency" : 12,
+#       "duration" : 53,
+#       "endDate" : "1677510595096"
+#     }],
+#     "clinicalSign" : {
+#       "date" : "1677510595096",
+#       "procalcitonin" : "pro sto",
+#       "whiteBloodCell" : "wbcb",
+#       "neutrophil" : "neuttr",
+#       "sCreatinine": "screr",
+#       "cratinineClearance" : "cre clear",
+#       "temperature" : "tem",
+#       "bloodPressure": "bp",
+#       "o2Saturation" : "o2 sat"
+#     }
+#   }
+# }

@@ -68,7 +68,7 @@ class PatientForm(models.Model):
     )
     isculture_report = models.BooleanField()
     culture_report = models.ManyToManyField("CultureReport", blank=True, default=[])
-    antibiotic_used = models.ManyToManyField("Antibiotic", blank=True ,default=[])
+    antibiotic_used = models.ManyToManyField("Antibiotic", blank=True, default=[])
     clinical_signs = models.ForeignKey(
         "ClinicalSign", blank=True, on_delete=models.CASCADE
     )
@@ -78,7 +78,7 @@ class PatientForm(models.Model):
 
 
 class Sepsis(models.Model):
-    id = models.AutoField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
     isSepsis = models.BooleanField(default=False)
     isSepticShock = models.BooleanField(default=False)
     isNeutropenicSepsis = models.BooleanField(default=False)
@@ -95,6 +95,7 @@ class FocusOfInfection(models.Model):
     isAbdominal = models.BooleanField(default=False)
     isPrimaryBacteraemia = models.BooleanField(default=False)
     isSecondaryBacteraemia = models.BooleanField(default=False)
+    isCatheterLinesStents = models.BooleanField(default=False)
     other = models.CharField(max_length=100, default="")
 
     def __str__(self):
@@ -120,7 +121,6 @@ class CultureReport(models.Model):
         max_length=100, choices=RESISTANCE_CHOICES, default="Select"
     )
     Imaging = models.ForeignKey("Imaging", blank=True, on_delete=models.CASCADE)
-
 
     def __str__(self):
         data = self.organism + " " + self.specimen_type
@@ -156,6 +156,7 @@ class Antibiotic(models.Model):
 
 class ClinicalSign(models.Model):
     date = models.CharField(max_length=100)
+    patientId = models.ForeignKey(Patient, on_delete=models.CASCADE)
     procalcitonin = models.CharField(max_length=100)
     white_blood_cell = models.CharField(max_length=100)
     neutrophil = models.CharField(max_length=100)
@@ -170,13 +171,13 @@ class ClinicalSign(models.Model):
 
 
 class AntibioticSensitivity(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(
+    # id = models.AutoField(primary_key=True)
+    antibiotic = models.CharField(
         max_length=100, choices=ANTIBIOTIC_CHOICES, default="Select"
     )
 
     def __str__(self):
-        return self.name
+        return self.antibiotic
 
 
 class DrugAdministeredReview(models.Model):
@@ -208,7 +209,7 @@ class PatientOutcome(models.Model):
 
 
 class Compliance(models.Model):
-    id = models.AutoField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
     serum_creatinine = models.IntegerField
     procalcitonin = models.IntegerField
     isAppropriate = models.BooleanField(default=False)

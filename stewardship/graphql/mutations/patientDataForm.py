@@ -30,6 +30,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
 
     @staticmethod
     def mutate(self, info, inputs: PatientFormInput):
+
         patientObject = Patient.objects.get(id=inputs.patient)
 
         sepsis = Sepsis.objects.create(
@@ -61,6 +62,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 impression=culture_report_input.Imaging.impression,
             )
             antibioticSensitivityList = []
+            print("tocheck: ", culture_report_input.antibioticSensitivity)
             for antibiotics in culture_report_input.antibioticSensitivity:
                 antibioticSensitivity = AntibioticSensitivity.objects.create(
                     antibiotic=antibiotics,
@@ -90,6 +92,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             )
             antibiotics_used.append(antibiotic_used)
 
+        print(inputs.clinicalSign)
         clinical_signsList = []
         for clinical_signs_input in inputs.clinicalSign:
             clinical_signs = ClinicalSign.objects.create(

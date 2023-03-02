@@ -28,17 +28,17 @@ mutation($input:PatientCreateInput!) {
 }
 
 # {
-#   "input":{
-#   "fullName" : "RV Raja",
-#   "mrdNumber": "SD23SDF",
-#   "dateOfBirth":  "16,76,11,51,01,657" ,
-#   "dateOfAdmission" : "16,76,11,51,01,657" ,
-#   "patientLocation": "WARD",
-#   "department" : "Cardiac",
-#   "admittingDoctor":"Hari Pillai",
-#   "diagnostic":"Surgery",
-#   "cormorbodities":"High cholistrol",
-#   "height":175,
-#   "weight":72,
-# }
+  #   "input":{
+  #   "fullName" : "RV Raja",
+  #   "mrdNumber": "SD23SDF",
+  #   "dateOfBirth":  "16,76,11,51,01,657" ,
+  #   "dateOfAdmission" : "16,76,11,51,01,657" ,
+  #   "patientLocation": "WARD",
+  #   "department" : "Cardiac",
+  #   "admittingDoctor":"Hari Pillai",
+  #   "diagnostic":"Surgery",
+  #   "cormorbodities":"High cholistrol",
+  #   "height":175,
+  #   "weight":72,
+  # }
 # }

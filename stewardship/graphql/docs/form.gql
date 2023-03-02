@@ -30,6 +30,9 @@ mutation($input:PatientFormInput!){
         organism
         siteOfCollection
         timeReported
+        antibioticSensitivity{
+          antibiotic
+        }
       }
       antibioticsUsed{
         id
@@ -50,69 +53,87 @@ mutation($input:PatientFormInput!){
   }
 }
 
+
 # {
-#   "input" : {
-#     "patient":1,
-#     "reviewDate":"1677510595096",
-#     "reviewDepartment" : "Cardac",
-#     "provisionalDiagnosis" : "prov diag",
-#     "finalDiagnosis" : "fina diag",
-#     "syndromicDiagnosis" : "syn diagnosis",
-#     "diagnosisChoice" : "probable",
-#     "sepsis" : {
+# "input": {
+#     "patient": 1,
+#     "reviewDate": "1677510595096",
+#     "reviewDepartment": "Cardac",
+#     "provisionalDiagnosis": "prov diag",
+#     "finalDiagnosis": "fina diag",
+#     "syndromicDiagnosis": "syn diagnosis",
+#     "diagnosisChoice": "probable",
+#     "sepsis": {
 #       "isSepsis": true,
 #       "isSepticShock": true,
-#       "isNeutropenicSepsis" : true
+#       "isNeutropenicSepsis": true
 #     },
 #     "focusOfInfection": {
-#       "isUTI":true,
-#       "isCNS":true,
-#       "isSkin":true,
-#       "isAbdominal":false,
+#       "isUTI": true,
+#       "isCNS": true,
+#       "isSkin": true,
+#       "isAbdominal": false,
 #       "isPneumonia": true,
-#       "isSecondaryBacteraemia":false,
-#       "isPrimaryBacteraemia" : true,
+#       "isSecondaryBacteraemia": false,
 #       "isCatheterLinesStents": false,
-#       "other" : "others"
+#       "isPrimaryBacteraemia": true,
+#       "other": "others"
 #     },
-#     "cultureReport" : [{
-#       "timeSent" : "1677510595096",
-#       "timeReported": "1677510595096",
-#       "sentBeforeAntibiotic" : true,
-#       "specimenType" : "spec type",
-#       "siteOfCollection" : "site of collection", 
-#       "organism":"orgnanism",
-#       "antibioticSensitivity" : [{"name":"asd"},{"name":"fwefwe"}],
-#       "resistance" : "resis",
-#       "Imaging" : {
-#         "isxRay" : true,
-#         "isUltraSound" : true,
-#         "isPETScan" : true,
-#         "isCTScan" : false,
-#         "isMRI" : true,
-#         "impression" : "the impression"
+#     "cultureReport": [
+#       {
+#         "timeSent": "1677510595096",
+#         "timeReported": "1677510595096",
+#         "sentBeforeAntibiotic": true,
+#         "specimenType": "spec type",
+#         "siteOfCollection": "site of collection",
+#         "organism": "orgnanism",
+#         "antibioticSensitivity": ["asd","fwefwe"],
+#         "resistance": "resis",
+#         "Imaging": {
+#           "isxRay": true,
+#           "isUltraSound": true,
+#           "isPETScan": true,
+#           "isCTScan": false,
+#           "isMRI": true,
+#           "impression": "the impression"
+#         }
 #       }
-#     }],
-#     "antibioticUsed" : [{
-#       "initialDate": "1677510595096",
-#       "antibiotic" : "antibbi",
-#       "loadingDose": 23,
-#       "maintenanceDose" : 23,
-#       "route" : "iv",
-#       "frequency" : 12,
-#       "duration" : 53,
-#       "endDate" : "1677510595096"
-#     }],
-#     "clinicalSign" : {
-#       "date" : "1677510595096",
-#       "procalcitonin" : "pro sto",
-#       "whiteBloodCell" : "wbcb",
-#       "neutrophil" : "neuttr",
-#       "sCreatinine": "screr",
-#       "cratinineClearance" : "cre clear",
-#       "temperature" : "tem",
-#       "bloodPressure": "bp",
-#       "o2Saturation" : "o2 sat"
-#     }
-#   }
+#     ],
+#     "antibioticUsed": [
+#       {
+#         "initialDate": "1677510595096",
+#         "antibiotic": "antibbi",
+#         "loadingDose": 23,
+#         "maintenanceDose": 23,
+#         "route": "iv",
+#         "frequency": 12,
+#         "duration": 53,
+#         "endDate": "1677510595096"
+#       }
+#     ],
+#     "clinicalSign": [
+#       {
+#         "date": "1677510595096",
+#         "procalcitonin": "pro sto",
+#         "whiteBloodCell": "wbcb",
+#         "neutrophil": "neuttr",
+#         "sCreatinine": "screr",
+#         "cratinineClearance": "cre clear",
+#         "temperature": "tem",
+#         "bloodPressure": "bp",
+#         "o2Saturation": "o2 sat"
+#       },
+#       {
+#         "date": "52375105345091",
+#         "procalcitonin": "pro sto",
+#         "whiteBloodCell": "wbcb",
+#         "neutrophil": "neuttr",
+#         "sCreatinine": "screr",
+#         "cratinineClearance": "cre clear",
+#         "temperature": "tem",
+#         "bloodPressure": "bp",
+#         "o2Saturation": "o2 sat"
+#       }
+#     ]
+# }
 # }

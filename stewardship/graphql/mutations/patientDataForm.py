@@ -73,6 +73,11 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 time_sent=culture_report_input.timeSent,
                 time_reported=culture_report_input.timeReported,
                 sentBeforeAntibiotic=culture_report_input.sentBeforeAntibiotic,
+                multi_drug_resistant = culture_report_input.multiDrugResistance,
+                # antibiotic_sensitivity = culture_report_input.antibioticSensitivity,
+                specimen_type = culture_report_input.specimenType,
+                site_of_collection = culture_report_input.siteOfCollection,
+                organism = culture_report_input.organism,
                 Imaging=imaging,
             )
             culture_report.antibiotic_sensitivity.set(antibioticSensitivityList)
@@ -109,18 +114,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             )
             clinical_signsList.append(clinical_signs)
 
-        # clinical_signs = ClinicalSign.objects.create(
-        #     date=inputs.clinicalSign.date,
-        #     patientId = patientObject,
-        #     procalcitonin=inputs.clinicalSign.procalcitonin,
-        #     white_blood_cell=inputs.clinicalSign.whiteBloodCell,
-        #     neutrophil=inputs.clinicalSign.neutrophil,
-        #     s_creatinine=inputs.clinicalSign.sCreatinine,
-        #     cratinine_clearance=inputs.clinicalSign.cratinineClearance,
-        #     o2_saturation=inputs.clinicalSign.o2Saturation,
-        #     blood_pressure=inputs.clinicalSign.bloodPressure,
-        #     temperature=inputs.clinicalSign.temperature,
-        # )
         try:
             patientForm = PatientForm.objects.create(
                 patient=patientObject,
@@ -144,6 +137,10 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             raise APIException(message=e, code=400)
 
         patientForm.save()
+
+        patientObject.lastReviewDate = inputs.reviewDate
+        patientObject.save()
+
         return PatientFormResponse(success=True, returning=patientForm)
 
     Output = PatientFormResponse

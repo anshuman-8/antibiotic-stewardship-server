@@ -21,7 +21,7 @@ class Patient(models.Model):
     mrdNumber = models.CharField(max_length=100)
     dateofAdmission = models.CharField(max_length=100)
     patientLocation = models.CharField(
-        max_length=100, choices=PATIENT_LOCATION, default="Select"
+        max_length=100, choices=PATIENT_LOCATION, default=""
     )
     # department=models.CharField(max_length=100, choices=DEPARTMENT, default="Select")
     department = models.CharField(max_length=100)
@@ -30,6 +30,8 @@ class Patient(models.Model):
     cormorbodities = models.CharField(max_length=100)
     height = models.CharField(max_length=100, blank=True)
     weight = models.CharField(max_length=100, blank=True)
+    lastReviewDate = models.DateField(default=None, blank=True, null=True)
+    lastAnalysisDate = models.DateField(default=None, blank=True, null=True)
     # gender = models.CharField(max_length=10, choices=PATIENT_GENDER, default=None)
     active = models.BooleanField(default=True)
 
@@ -54,6 +56,8 @@ class AnalysisForm(models.Model):
 
 class PatientForm(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    isAnalyzed = models.BooleanField(default=False)
+    # date = models.DateTimeField(auto_now_add=True)
     review_date = models.CharField(max_length=100)
     review_department = models.CharField(max_length=100)
     provisional_diagnosis = models.CharField(max_length=200)
@@ -64,7 +68,7 @@ class PatientForm(models.Model):
     )
     sepsis = models.ForeignKey("Sepsis", blank=True, on_delete=models.CASCADE)
     focus_of_infection = models.ForeignKey(
-        "FocusOfInfection", blank=True, on_delete=models.CASCADE
+        "FocusOfInfection", blank=True, on_delete=models.CASCADE, 
     )
     isculture_report = models.BooleanField()
     culture_report = models.ManyToManyField("CultureReport", blank=True, default=[])
@@ -84,7 +88,7 @@ class Sepsis(models.Model):
     isNeutropenicSepsis = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.id)
+        return "sepsis"
 
 
 class FocusOfInfection(models.Model):
@@ -107,7 +111,7 @@ class CultureReport(models.Model):
     time_reported = models.CharField(max_length=100)
     sentBeforeAntibiotic = models.BooleanField(default=False)
     specimen_type = models.CharField(
-        max_length=100, choices=SPECIMEN_CHOICES, default="Select"
+        max_length=100, choices=SPECIMEN_CHOICES, default=""
     )
     site_of_collection = models.CharField(max_length=100)
     organism = models.CharField(max_length=100)
@@ -115,10 +119,10 @@ class CultureReport(models.Model):
         "AntibioticSensitivity", blank=True, default=[]
     )
     multi_drug_resistant = models.CharField(
-        max_length=100, choices=MDR_CHOICES, default="Select"
+        max_length=100, choices=MDR_CHOICES, default=""
     )
     resistance = models.CharField(
-        max_length=100, choices=RESISTANCE_CHOICES, default="Select"
+        max_length=100, choices=RESISTANCE_CHOICES, default=""
     )
     Imaging = models.ForeignKey("Imaging", blank=True, on_delete=models.CASCADE)
 
@@ -189,11 +193,10 @@ class DrugAdministeredReview(models.Model):
     isRightDuration = models.BooleanField(default=False)
     isRightIndication = models.BooleanField(default=False)
     isAppropriate = models.BooleanField(default=False)
-    isRightDocumentation = models.BooleanField(default=False)
     score = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.score
 
 
 class PatientOutcome(models.Model):

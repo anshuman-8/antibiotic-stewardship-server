@@ -12,9 +12,6 @@ class ImagingInput(graphene.InputObjectType):
     impression = graphene.String()
 
 
-# class AntibioticSensitivityInput(graphene.InputObjectType):
-#     antibiotic = graphene.String()
-
 
 class CultureReportInput(graphene.InputObjectType):
     timeSent = graphene.String()
@@ -24,7 +21,7 @@ class CultureReportInput(graphene.InputObjectType):
     siteOfCollection = graphene.String()
     organism = graphene.String()
     antibioticSensitivity = graphene.List(graphene.String)
-    multiDrugResistant = graphene.String()
+    multiDrugResistance = graphene.String()
     resistance = graphene.String()
     Imaging = graphene.Field(ImagingInput)
 

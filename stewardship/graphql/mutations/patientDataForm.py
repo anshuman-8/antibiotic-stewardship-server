@@ -30,7 +30,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
 
     @staticmethod
     def mutate(self, info, inputs: PatientFormInput):
-
         patientObject = Patient.objects.get(id=inputs.patient)
 
         sepsis = Sepsis.objects.create(
@@ -73,11 +72,11 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 time_sent=culture_report_input.timeSent,
                 time_reported=culture_report_input.timeReported,
                 sentBeforeAntibiotic=culture_report_input.sentBeforeAntibiotic,
-                multi_drug_resistant = culture_report_input.multiDrugResistance,
+                multi_drug_resistant=culture_report_input.multiDrugResistance,
                 # antibiotic_sensitivity = culture_report_input.antibioticSensitivity,
-                specimen_type = culture_report_input.specimenType,
-                site_of_collection = culture_report_input.siteOfCollection,
-                organism = culture_report_input.organism,
+                specimen_type=culture_report_input.specimenType,
+                site_of_collection=culture_report_input.siteOfCollection,
+                organism=culture_report_input.organism,
                 Imaging=imaging,
             )
             culture_report.antibiotic_sensitivity.set(antibioticSensitivityList)

@@ -1,17 +1,19 @@
 from django.test import TestCase
 
-class FirstTestCase(TestCase):
 
+class FirstTestCase(TestCase):
     def setUp(self):
         pass
-    
+
     def test_equal(self):
         self.assertEqual(1, 1)
 
     def test_patient_register(self):
-        patients = [{
-            "fullName":"Anshuman",
-        }]
+        patients = [
+            {
+                "fullName": "Anshuman",
+            }
+        ]
 
 
 #     def test_first(self):

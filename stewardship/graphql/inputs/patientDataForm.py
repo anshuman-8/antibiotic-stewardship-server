@@ -12,7 +12,6 @@ class ImagingInput(graphene.InputObjectType):
     impression = graphene.String()
 
 
-
 class CultureReportInput(graphene.InputObjectType):
     timeSent = graphene.String()
     timeReported = graphene.String()

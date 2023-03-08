@@ -38,13 +38,12 @@ class Patient(models.Model):
     def __str__(self):
         return self.fullName + "-" + self.mrdNumber
 
-
 class AnalysisForm(models.Model):
-    date = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
     doctor = models.CharField(max_length=100, default=None)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patientForm = models.ForeignKey("PatientForm", on_delete=models.CASCADE)
-    drugAdministered = models.ManyToManyField("DrugAdministeredReview", blank=True)
+    drugAdministered = models.ForeignKey("DrugAdministeredReview", blank=True, on_delete=models.CASCADE )
     patientOutcome = models.ForeignKey(
         "PatientOutcome", blank=True, on_delete=models.CASCADE
     )
@@ -68,7 +67,9 @@ class PatientForm(models.Model):
     )
     sepsis = models.ForeignKey("Sepsis", blank=True, on_delete=models.CASCADE)
     focus_of_infection = models.ForeignKey(
-        "FocusOfInfection", blank=True, on_delete=models.CASCADE, 
+        "FocusOfInfection",
+        blank=True,
+        on_delete=models.CASCADE,
     )
     isculture_report = models.BooleanField()
     culture_report = models.ManyToManyField("CultureReport", blank=True, default=[])
@@ -213,15 +214,15 @@ class PatientOutcome(models.Model):
 
 class Compliance(models.Model):
     # id = models.AutoField(primary_key=True)
-    serum_creatinine = models.IntegerField
-    procalcitonin = models.IntegerField
+    serum_creatinine = models.IntegerField(default=None)
+    # procalcitonin = models.IntegerField
     isAppropriate = models.BooleanField(default=False)
     isRightDocumentation = models.BooleanField(default=False)
     isRecommendationFiled = models.BooleanField(default=True)
     isAntibioticChanged = models.BooleanField(default=False)
     isComplance = models.BooleanField(default=False)
     isDuration = models.BooleanField(default=False)
-    isAntibiotisculture_reporticDoseChanged = models.BooleanField(default=False)
+    isAntibiotisDoseChanged = models.BooleanField(default=False)
 
     def __str__(self):
         return self.serum_creatinine

@@ -20,8 +20,10 @@ class PatientQuery(graphene.ObjectType):
     def resolve_activePatients(self, info, **kwargs):
         active = kwargs.get("active")
         return Patient.objects.filter(active=active)
-    
+
     def resolve_todayPatientList(self, info):
-        result = Patient.objects.filter(active=True, lastReviewDate__lt=timezone.datetime.now().date())
+        result = Patient.objects.filter(
+            active=True, lastReviewDate__lt=timezone.datetime.now().date()
+        )
         result2 = Patient.objects.filter(active=True, lastReviewDate__isnull=True)
         return result | result2

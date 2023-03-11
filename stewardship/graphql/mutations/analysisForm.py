@@ -77,7 +77,7 @@ class AnalysisDataForm(
             isComplance=inputs.compliance.isComplance,
             # duration = inputs.compliance.duration
         )
-        print("Reach here")
+
         try:
             analysisForm = AnalysisForm.objects.create(
                 doctor = inputs.doctor,
@@ -93,7 +93,9 @@ class AnalysisDataForm(
             raise APIException(message=e, code=400)
 
         analysisForm.save()
-
+        patientFormObject.isAnalyzed=True
+        patientFormObject.save()
+        
         return AnalysisFormResponse(success=True, returning=analysisForm)
 
     Output = AnalysisFormResponse

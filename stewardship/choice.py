@@ -46,27 +46,27 @@ MDR_CHOICES = [
 # Resistance Choices
 RESISTANCE_CHOICES = [
     (
-        "CRE( Carbapenemase resistant enterobactereciae)",
-        "CRE( Carbapenemase resistant enterobactereciae)",
+        "CRE (Carbapenem resistant enterobactereciae)",
+        "CRE (Carbapenem resistant enterobactereciae)",
     ),
     (
-        "ESBL(Extended spectrum beta lactamase)",
-        "ESBL(Extended spectrum beta lactamase)",
+        "CRAB (Carbapenem resistant acenetobacter)",
+        "CRAB (Carbapenem resistant acenetobacter)",
     ),
     (
-        "MRSA(Methicillin resistant staphylococcus aureus)",
-        "MRSA(Methicillin resistant staphylococcus aureus)",
+        "ESBL (Extended spectrum Beta lactamase)",
+        "ESBL (Extended spectrum Beta lactamase)",
     ),
     (
-        "VRE(Vancomycin resistant enterococcus)",
-        "VRE(Vancomycin resistant enterococcus)",
+        "MRSA (Methicillin resistant Staph Aureus)",
+        "MRSA (Methicillin resistant Staph Aureus)",
     ),
     (
-        "CRAB( Carbapenem resistant acinetobacter baumannii)",
-        "CRAB( Carbapenem resistant acinetobacter baumannii)",
+        "VRE (Vancomycin resistant Enterococcus)",
+        "VRE (Vancomycin resistant Enterococcus)",
     ),
-    ("Col Re( Colistin resistant)", "Col Re( Colistin resistant)"),
-    ("NA-None of the above", "NA-None of the above"),
+    ("Col Re( Colistin resistant)", "Col Re (colistin Resistant)"),
+    ("NA", "NA"),
 ]
 
 DIAGNOSIS_CHOICES = [

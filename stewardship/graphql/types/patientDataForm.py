@@ -98,6 +98,7 @@ class ClinicalSignObj(graphene.ObjectType, description="Clinical Sign object"):
 class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm object"):
     id = graphene.ID()
     patient = graphene.Field(lambda: PatientObj)
+    isAnalyzed = graphene.Boolean()
     review_date = graphene.String()
     review_department = graphene.String()
     provisional_diagnosis = graphene.String()

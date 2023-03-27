@@ -40,5 +40,18 @@ class RegisterPatient(graphene.Mutation, description="Register a patient"):
     Output = PatientRegisterResponse
 
 
+class DischargePatient(graphene.Mutation, description="Discharge a patient"):
+    class Arguments:
+        id = graphene.ID()
+
+    def mutate(self, info, id):
+        patient = Patient.objects.get(id=id)
+        patient.active = False
+        patient.save()
+        return True
+
+    Output = graphene.Boolean()
+
 class Mutation(graphene.ObjectType):
     createUser = RegisterPatient.Field()
+    dischargePatient = DischargePatient.Field()

@@ -82,6 +82,7 @@ class AntibioticObj(graphene.ObjectType, description="Antibiotic object"):
 class ClinicalSignObj(graphene.ObjectType, description="Clinical Sign object"):
     id = graphene.ID()
     date = graphene.String()
+    patient = graphene.Field(lambda: PatientObj)
     procalcitonin = graphene.String()
     white_blood_cell = graphene.String()
     neutrophil = graphene.String()
@@ -110,7 +111,7 @@ class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm o
     isculture_report = graphene.Boolean()
     culture_report = graphene.List(lambda: CultureReportObj)
     antibiotics_used = graphene.List(lambda: AntibioticObj)
-    clinical_signs = graphene.Field(lambda: ClinicalSignObj)
+    # clinical_signs = graphene.Field(lambda: ClinicalSignObj)
 
     def resolve_culture_report(self, info):
         return self.culture_report.all()

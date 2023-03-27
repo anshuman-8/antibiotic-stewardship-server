@@ -101,7 +101,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
         for clinical_signs_input in inputs.clinicalSign:
             clinical_signs = ClinicalSign.objects.create(
                 date=clinical_signs_input.date,
-                patientId=patientObject,
+                patient=patientObject,
                 procalcitonin=clinical_signs_input.procalcitonin,
                 white_blood_cell=clinical_signs_input.whiteBloodCell,
                 neutrophil=clinical_signs_input.neutrophil,
@@ -124,7 +124,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 diagnosis_choice=inputs.diagnosisChoice,
                 focus_of_infection=focusOfInfection,
                 sepsis=sepsis,
-                clinical_signs=clinical_signsList[0],
+                # clinical_signs=clinical_signsList[0],
                 isculture_report=True,
             )
             patientForm.culture_report.set(culture_reports)

@@ -148,11 +148,11 @@ class Imaging(models.Model):
 class Antibiotic(models.Model):
     initial_date = models.CharField(max_length=100)
     antibiotic = models.CharField(max_length=100)
-    loading_dose = models.IntegerField()
-    maintenance_dose = models.IntegerField()
+    loading_dose = models.IntegerField(null=True, blank=True)
+    maintenance_dose = models.IntegerField(null=True, blank=True)
     route = models.CharField(max_length=100)
-    frequency = models.IntegerField()
-    duration = models.IntegerField()
+    frequency = models.IntegerField(null=True, blank=True)
+    duration = models.IntegerField(null=True, blank=True)
     end_date = models.CharField(max_length=100)
 
     def __str__(self):

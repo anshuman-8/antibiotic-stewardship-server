@@ -43,7 +43,7 @@ AUTH_USER_MODEL = "stewardship.User"
 INSTALLED_APPS = [
     "stewardship",
     "graphene_django",
-    "corsheaders",  # to be removed in production
+    "corsheaders",   
     "jet",
     "django.contrib.admin",
     "django.contrib.auth",

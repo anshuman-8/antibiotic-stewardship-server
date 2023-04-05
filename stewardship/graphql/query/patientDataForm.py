@@ -45,10 +45,9 @@ class PatientDataFormQuery(graphene.ObjectType):
         return PatientForm.objects.filter(isAnalyzed=False)
     
     def resolve_getClinicalSigns(self, info, **kwargs):
-        patient = kwargs.get("patientId")
-        print("asdasdfas",patient)
-        patientObj = Patient.objects.get(id=patient)
-        # startDate = kwargs.get("startDate")
-        # endDate = kwargs.get("endDate")
-        # return PatientForm.objects.filter(patient=patient, review_date__range=[startDate, endDate])
-        return ClinicalSign.objects.filter(patient=patient)
+        patient = kwargs.get("patient")
+        startDate = kwargs.get("startDate")
+        endDate = kwargs.get("endDate")
+        print([startDate, endDate])
+        return ClinicalSign.objects.filter(patient=patient, date__range=[startDate, endDate])
+        # return ClinicalSign.objects.filter(patient=patient)

@@ -33,6 +33,13 @@ class UserAdmin(admin.ModelAdmin):
     list_filter = ("isStaff", "isAdmin")
     # search_fields = ("username", "email")
 
+class ClinicalSignsAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "date",
+        "patient",
+        )
+    
 
 admin.site.register(User, UserAdmin)
 
@@ -54,7 +61,7 @@ admin.site.register(Imaging)
 
 admin.site.register(Antibiotic)
 
-admin.site.register(ClinicalSign)
+admin.site.register(ClinicalSign, ClinicalSignsAdmin)
 
 admin.site.register(AntibioticSensitivity)
 

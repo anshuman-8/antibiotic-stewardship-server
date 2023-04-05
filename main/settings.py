@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     "stewardship",
     "graphene_django",
     "corsheaders",   
-    "jet",
+    # "jet",
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -92,8 +94,6 @@ GRAPHENE = {
 WSGI_APPLICATION = "main.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
@@ -103,8 +103,6 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -122,8 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
@@ -153,35 +149,3 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-JET_SIDE_MENU_COMPACT = True
-JET_CHANGE_FORM_SIBLING_LINKS = True
-JET_THEMES = [
-    {
-        "theme": "default",  # theme folder name
-        "color": "#47bac1",  # color of the theme's button in user menu
-        "title": "Default",  # theme title
-    },
-    {"theme": "green", "color": "#44b78b", "title": "Green"},
-    {"theme": "light-green", "color": "#2faa60", "title": "Light Green"},
-    {"theme": "light-violet", "color": "#a464c4", "title": "Light Violet"},
-    {"theme": "light-blue", "color": "#5EADDE", "title": "Light Blue"},
-    {"theme": "light-gray", "color": "#222", "title": "Light Gray"},
-]
-
-JET_SIDE_MENU_ITEMS = [
-    {
-        "label": "Users",
-        "items": [
-            {"label": "Users", "name": "stewardship.user"},
-        ],
-    },  # A list of application or custom item dicts
-    {
-        "label": "Stewardship",
-        "items": [
-            {"label": "Patient Data", "name": "stewardship.patient"},
-            {"label": "Data collection Form", "name": "stewardship.patientform"},
-            {"label": "Analysis Form", "name": "stewardship.analysisform"},
-        ],
-    },
-]

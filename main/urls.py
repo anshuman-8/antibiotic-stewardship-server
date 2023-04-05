@@ -9,7 +9,7 @@ from graphene_django.views import GraphQLView
 from stewardship import views
 
 urlpatterns = [
-    path("jet/", include("jet.urls", "jet")),  # Django JET URLS
+    # path("jet/", include("jet.urls", "jet")),  # Django JET URLS
     path("admin/", admin.site.urls),
     path("api/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path("", views.index, name="index"),

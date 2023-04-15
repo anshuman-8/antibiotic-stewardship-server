@@ -19,7 +19,7 @@ class PatientFormAdmin(admin.ModelAdmin):
     #     "review_date",
     #     "review_department",
     #     "provisional_diagnosis",
-    # )
+    # )   
 
 
 class UserAdmin(admin.ModelAdmin):

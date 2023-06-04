@@ -1,6 +1,9 @@
 import graphene
 from stewardship.models import PatientForm, Patient, ClinicalSign
-from stewardship.graphql.types.patientDataForm import PatientDataFormObj, ClinicalSignObj
+from stewardship.graphql.types.patientDataForm import (
+    PatientDataFormObj,
+    ClinicalSignObj,
+)
 
 
 class PatientDataFormQuery(graphene.ObjectType):
@@ -43,11 +46,13 @@ class PatientDataFormQuery(graphene.ObjectType):
 
     def resolve_formsForAnalysis(self, info, **kwargs):
         return PatientForm.objects.filter(isAnalyzed=False)
-    
+
     def resolve_getClinicalSigns(self, info, **kwargs):
         patient = kwargs.get("patient")
         startDate = kwargs.get("startDate")
         endDate = kwargs.get("endDate")
         print([startDate, endDate])
-        return ClinicalSign.objects.filter(patient=patient, date__range=[startDate, endDate])
+        return ClinicalSign.objects.filter(
+            patient=patient, date__range=[startDate, endDate]
+        )
         # return ClinicalSign.objects.filter(patient=patient)

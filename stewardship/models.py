@@ -38,12 +38,15 @@ class Patient(models.Model):
     def __str__(self):
         return self.fullName + "-" + self.mrdNumber
 
+
 class AnalysisForm(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     doctor = models.CharField(max_length=100, default=None)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patientForm = models.ForeignKey("PatientForm", on_delete=models.CASCADE)
-    drugAdministered = models.ForeignKey("DrugAdministeredReview", blank=True, on_delete=models.CASCADE )
+    drugAdministered = models.ForeignKey(
+        "DrugAdministeredReview", blank=True, on_delete=models.CASCADE
+    )
     patientOutcome = models.ForeignKey(
         "PatientOutcome", blank=True, on_delete=models.CASCADE
     )

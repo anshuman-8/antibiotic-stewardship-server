@@ -130,7 +130,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             patientForm.culture_report.set(culture_reports)
             patientForm.antibiotic_used.set(antibiotics_used)
 
-
         except Exception as e:
             print("Error: ", e)
             raise APIException(message=e, code=400)

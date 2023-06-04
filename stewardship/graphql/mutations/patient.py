@@ -52,6 +52,7 @@ class DischargePatient(graphene.Mutation, description="Discharge a patient"):
 
     Output = graphene.Boolean()
 
+
 class Mutation(graphene.ObjectType):
     createUser = RegisterPatient.Field()
     dischargePatient = DischargePatient.Field()

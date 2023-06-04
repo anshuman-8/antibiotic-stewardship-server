@@ -27,4 +27,3 @@ class PatientQuery(graphene.ObjectType):
         )
         result2 = Patient.objects.filter(active=True, lastReviewDate__isnull=True)
         return result | result2
-    

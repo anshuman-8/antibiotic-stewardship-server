@@ -18,7 +18,6 @@ class PatientQuery(graphene.ObjectType):
         return Patient.objects.get(id=id)
 
     def resolve_activePatients(self, info):
-        # active = kwargs.get("active")
         return Patient.objects.filter(active=True)
 
     def resolve_todayPatientList(self, info):

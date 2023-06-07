@@ -30,7 +30,6 @@ class AnalysisDataForm(
 
     @staticmethod
     def mutate(self, info, inputs: AnalysisFormInput):
-        print(inputs)
         patientObject = Patient.objects.get(id=inputs.patient)
         patientFormObject = PatientForm.objects.get(id=inputs.patientForm)
 
@@ -69,13 +68,11 @@ class AnalysisDataForm(
 
         compliance = Compliance.objects.create(
             serum_creatinine=inputs.compliance.serum_creatinine,
-            # procalcitonin=inputs.compliance.procalcitonin,
             isAppropriate=inputs.compliance.isAppropriate,
             isRightDocumentation=inputs.compliance.isRightDocumentation,
             isRecommendationFiled=inputs.compliance.isRecommendationFiled,
             isAntibiotisDoseChanged=inputs.compliance.isAntibiotisDoseChanged,
             isComplance=inputs.compliance.isComplance,
-            # duration = inputs.compliance.duration
         )
 
         try:
@@ -87,13 +84,15 @@ class AnalysisDataForm(
                 drugAdministered=drugAdministeredReview,
                 patientOutcome=patientOutcome,
                 recommendation=recommendation,
+                draft = inputs.draft
             )
 
         except Exception as e:
             raise APIException(message=e, code=400)
 
         analysisForm.save()
-        patientFormObject.isAnalyzed=True
+        if input.draft == False:
+            patientFormObject.isAnalyzed=True
         patientFormObject.save()
         
         return AnalysisFormResponse(success=True, returning=analysisForm)

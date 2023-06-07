@@ -50,4 +50,3 @@ class PatientDataFormQuery(graphene.ObjectType):
         endDate = kwargs.get("endDate")
         print([startDate, endDate])
         return ClinicalSign.objects.filter(patient=patient, date__range=[startDate, endDate])
-        # return ClinicalSign.objects.filter(patient=patient)

@@ -51,6 +51,7 @@ class AnalysisForm(models.Model):
     recommendation = models.ForeignKey(
         "Recommendation", blank=True, on_delete=models.CASCADE
     )
+    draft = models.BooleanField(default=False)
 
 
 class PatientForm(models.Model):
@@ -77,7 +78,7 @@ class PatientForm(models.Model):
     # clinical_signs = models.ForeignKey(
     #     "ClinicalSign", blank=True, on_delete=models.CASCADE
     # )
-
+    draft = models.BooleanField(default=False)
     def __str__(self):
         return self.patient.fullName
 

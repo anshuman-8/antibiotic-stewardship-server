@@ -61,7 +61,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 impression=culture_report_input.Imaging.impression,
             )
             antibioticSensitivityList = []
-            print("tocheck: ", culture_report_input.antibioticSensitivity)
             for antibiotics in culture_report_input.antibioticSensitivity:
                 antibioticSensitivity = AntibioticSensitivity.objects.create(
                     antibiotic=antibiotics,
@@ -73,7 +72,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 time_reported=culture_report_input.timeReported,
                 sentBeforeAntibiotic=culture_report_input.sentBeforeAntibiotic,
                 multi_drug_resistant=culture_report_input.multiDrugResistance,
-                # antibiotic_sensitivity = culture_report_input.antibioticSensitivity,
                 specimen_type=culture_report_input.specimenType,
                 site_of_collection=culture_report_input.siteOfCollection,
                 organism=culture_report_input.organism,
@@ -96,7 +94,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             )
             antibiotics_used.append(antibiotic_used)
 
-        print(inputs.clinicalSign)
         clinical_signsList = []
         for clinical_signs_input in inputs.clinicalSign:
             clinical_signs = ClinicalSign.objects.create(
@@ -124,8 +121,8 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 diagnosis_choice=inputs.diagnosisChoice,
                 focus_of_infection=focusOfInfection,
                 sepsis=sepsis,
-                # clinical_signs=clinical_signsList[0],
                 isculture_report=True,
+                draft = inputs.draft
             )
             patientForm.culture_report.set(culture_reports)
             patientForm.antibiotic_used.set(antibiotics_used)

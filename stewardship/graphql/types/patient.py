@@ -22,6 +22,9 @@ class PatientObj(graphene.ObjectType, description="the Patient object"):
     hasDraft = graphene.Boolean()
     # patientLocation = graphene.String()
 
+    def resolve_hasDraft(self, info):
+        if isinstance(self, Patient):
+            return self.hasDraft
 
     def resolve_dateOfBirth(self, info):
         if isinstance(self, Patient):

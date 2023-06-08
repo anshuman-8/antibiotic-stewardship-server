@@ -34,8 +34,6 @@ class Patient(models.Model):
     lastAnalysisDate = models.DateField(default=None, blank=True, null=True)
     # gender = models.CharField(max_length=10, choices=PATIENT_GENDER, default=None)
     active = models.BooleanField(default=True)
-    # draftForm = models.ForeignKey(
-    #     "PatientForm", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.fullName + "-" + self.mrdNumber

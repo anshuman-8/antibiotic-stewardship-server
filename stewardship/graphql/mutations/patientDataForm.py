@@ -137,8 +137,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             print("Error: ", e)
             raise APIException(message=e, code=400)
 
-        patientForm.save()
-
         if not inputs.draft:
             patientObject.last_review_date = inputs.reviewDate
             patientObject.save()
@@ -146,6 +144,8 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
                 form = PatientForm.objects.get(patient=inputs.patient, draft=True)
                 form.delete()
+                
+        patientForm.save()
 
         return PatientFormResponse(success=True, returning=patientForm)
 

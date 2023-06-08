@@ -79,3 +79,4 @@ class PatientFormInput(graphene.InputObjectType):
     cultureReport = graphene.List(CultureReportInput)
     antibioticUsed = graphene.List(AntibioticInput)
     clinicalSign = graphene.List(ClinicalSignInput)
+    draft = graphene.Boolean()

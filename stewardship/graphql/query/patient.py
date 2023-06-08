@@ -1,7 +1,7 @@
 from django.utils import timezone
 import graphene
-from stewardship.models import Patient
-from stewardship.graphql.types.patient import PatientObj
+from stewardship.models import Patient, PatientForm
+from stewardship.graphql.types import PatientObj, PatientDataFormObj
 
 
 class PatientQuery(graphene.ObjectType):
@@ -26,4 +26,5 @@ class PatientQuery(graphene.ObjectType):
         )
         result2 = Patient.objects.filter(active=True, lastReviewDate__isnull=True)
         return result | result2
+    
     

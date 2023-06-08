@@ -19,7 +19,9 @@ class PatientObj(graphene.ObjectType, description="the Patient object"):
     weight = graphene.String()
     # gender = graphene.String()
     active = graphene.Boolean()
+    hasDraft = graphene.Boolean()
     # patientLocation = graphene.String()
+
 
     def resolve_dateOfBirth(self, info):
         if isinstance(self, Patient):

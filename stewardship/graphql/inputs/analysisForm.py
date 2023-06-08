@@ -64,3 +64,4 @@ class AnalysisFormInput(graphene.InputObjectType):
     patientOutcome = graphene.Field(PatientOutcomeInput)
     compliance = graphene.Field(ComplianceInput)
     recommendation = graphene.Field(RecommendationInput)
+    draft = graphene.Boolean()

@@ -34,9 +34,16 @@ class Patient(models.Model):
     lastAnalysisDate = models.DateField(default=None, blank=True, null=True)
     # gender = models.CharField(max_length=10, choices=PATIENT_GENDER, default=None)
     active = models.BooleanField(default=True)
+    # draftForm = models.ForeignKey(
+    #     "PatientForm", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.fullName + "-" + self.mrdNumber
+    
+    @property
+    def hasDraft(self):
+        return self.patientform_set.filter(draft=True).exists()
+    
 
 class AnalysisForm(models.Model):
     date = models.DateTimeField(auto_now_add=True)
@@ -79,6 +86,7 @@ class PatientForm(models.Model):
     #     "ClinicalSign", blank=True, on_delete=models.CASCADE
     # )
     draft = models.BooleanField(default=False)
+
     def __str__(self):
         return self.patient.fullName
 

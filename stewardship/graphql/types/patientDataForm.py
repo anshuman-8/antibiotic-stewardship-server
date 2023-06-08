@@ -111,7 +111,7 @@ class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm o
     isculture_report = graphene.Boolean()
     culture_report = graphene.List(lambda: CultureReportObj)
     antibiotics_used = graphene.List(lambda: AntibioticObj)
-    # clinical_signs = graphene.Field(lambda: ClinicalSignObj)
+    hasDraftAnalysis = graphene.Boolean()
 
     def resolve_culture_report(self, info):
         return self.culture_report.all()

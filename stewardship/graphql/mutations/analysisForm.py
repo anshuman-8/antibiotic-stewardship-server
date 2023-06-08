@@ -93,7 +93,7 @@ class AnalysisDataForm(
         analysisForm.save()
         if input.draft == False:
             patientFormObject.isAnalyzed=True
-        patientFormObject.save()
+            patientFormObject.save()
 
         return AnalysisFormResponse(success=True, returning=analysisForm)
 

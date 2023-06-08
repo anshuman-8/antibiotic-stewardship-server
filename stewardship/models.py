@@ -65,7 +65,6 @@ class AnalysisForm(models.Model):
 class PatientForm(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     isAnalyzed = models.BooleanField(default=False)
-    # date = models.DateTimeField(auto_now_add=True)
     review_date = models.CharField(max_length=100)
     review_department = models.CharField(max_length=100)
     provisional_diagnosis = models.CharField(max_length=200)
@@ -83,13 +82,14 @@ class PatientForm(models.Model):
     isculture_report = models.BooleanField()
     culture_report = models.ManyToManyField("CultureReport", blank=True, default=[])
     antibiotic_used = models.ManyToManyField("Antibiotic", blank=True, default=[])
-    # clinical_signs = models.ForeignKey(
-    #     "ClinicalSign", blank=True, on_delete=models.CASCADE
-    # )
     draft = models.BooleanField(default=False)
 
     def __str__(self):
         return self.patient.fullName
+    
+    @property
+    def hasDraftAnalysis(self):
+        return self.analysisform_set.filter(draft=True).exists()
 
 
 class Sepsis(models.Model):

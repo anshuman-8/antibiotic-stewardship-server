@@ -26,6 +26,7 @@ class PatientDataFormQuery(graphene.ObjectType):
         startDate=graphene.String(required=True),
         endDate=graphene.String(required=True),
     )
+    getDraftForms = graphene.List(PatientDataFormObj)
 
     def resolve_forms(self, info):
         return PatientForm.objects.all()
@@ -52,3 +53,8 @@ class PatientDataFormQuery(graphene.ObjectType):
         startDate = kwargs.get("startDate")
         endDate = kwargs.get("endDate")
         return ClinicalSign.objects.filter(patient=patient, date__range=[startDate, endDate])
+    
+    def resolve_fetchDraftForms(self, info, **kwargs):
+        patient = kwargs.get("patient")
+        return PatientForm.objects.filter(draft=True, patient=patient)
+    

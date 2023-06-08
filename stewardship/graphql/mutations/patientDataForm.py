@@ -32,11 +32,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
     def mutate(self, info, inputs: PatientFormInput):
         print("\n\nPatient Data Form :   ",inputs)
         patientObject = Patient.objects.get(id=inputs.patient)
-        # if inputs.draft:
-        #     # check if any other draft exists of the same patient, is exists replace it with it
-        #     if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
-        #         form = PatientForm.objects.get(patient=inputs.patient, draft=True)
-        #         form.delete()
 
         sepsis = Sepsis.objects.create(
             isSepsis=inputs.sepsis.isSepsis,

@@ -41,7 +41,7 @@ class AnalysisDataForm(
             isRightFrequency=inputs.drugAdministeredReview.isRightFrequency,
             isRightDuration=inputs.drugAdministeredReview.isRightDuration,
             isRightIndication=inputs.drugAdministeredReview.isRightIndication,
-            isAppropriate = inputs.drugAdministeredReview.isAppropriate,
+            isAppropriate=inputs.drugAdministeredReview.isAppropriate,
             score=inputs.drugAdministeredReview.score,
         )
 
@@ -50,7 +50,7 @@ class AnalysisDataForm(
             date_of_discharge=inputs.patientOutcome.date_of_discharge,
             outcome=inputs.patientOutcome.outcome,
         )
-        
+
         recommendation = Recommendation.objects.create(
             indication=inputs.recommendation.indication,
             drug=inputs.recommendation.drug,
@@ -63,7 +63,7 @@ class AnalysisDataForm(
             isdose=inputs.recommendation.isdose,
             isfrequency=inputs.recommendation.isfrequency,
             isduration=inputs.recommendation.isduration,
-            isdeEscalation=inputs.recommendation.isdeEscalation
+            isdeEscalation=inputs.recommendation.isdeEscalation,
         )
 
         compliance = Compliance.objects.create(
@@ -77,7 +77,7 @@ class AnalysisDataForm(
 
         try:
             analysisForm = AnalysisForm.objects.create(
-                doctor = inputs.doctor,
+                doctor=inputs.doctor,
                 patient=patientObject,
                 patientForm=patientFormObject,
                 compliance=compliance,
@@ -94,7 +94,7 @@ class AnalysisDataForm(
         if input.draft == False:
             patientFormObject.isAnalyzed=True
         patientFormObject.save()
-        
+
         return AnalysisFormResponse(success=True, returning=analysisForm)
 
     Output = AnalysisFormResponse

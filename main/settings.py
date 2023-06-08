@@ -11,7 +11,7 @@ ALLOWED_HOSTS = ["*"]
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "https://amrita-antibiotic-stewardship.vercel.app"
+    "https://amrita-antibiotic-stewardship.vercel.app",
 ]
 
 AUTH_USER_MODEL = "stewardship.User"
@@ -20,8 +20,8 @@ INSTALLED_APPS = [
     "stewardship",
     "graphene_django",
     "corsheaders",
-    "admin_interface",
-    "colorfield",
+    # "admin_interface",
+    # "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -67,7 +67,6 @@ GRAPHENE = {
 }
 
 WSGI_APPLICATION = "main.wsgi.application"
-
 
 
 DATABASES = {

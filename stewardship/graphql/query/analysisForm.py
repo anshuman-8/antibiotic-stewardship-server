@@ -6,7 +6,9 @@ from stewardship.graphql.types.analysisForm import AnalysisFormObj
 class AnalysisFormQuery(graphene.ObjectType):
     analysisForms = graphene.List(AnalysisFormObj)
     analysisForm = graphene.Field(AnalysisFormObj, id=graphene.ID())
-    patientAnalysisForms = graphene.List(AnalysisFormObj, patientId=graphene.ID(required=True))
+    patientAnalysisForms = graphene.List(
+        AnalysisFormObj, patientId=graphene.ID(required=True)
+    )
 
     def resolve_analysisForms(self, info):
         return AnalysisForm.objects.all()

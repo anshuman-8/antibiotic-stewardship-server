@@ -76,6 +76,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 specimen_type=culture_report_input.specimenType,
                 site_of_collection=culture_report_input.siteOfCollection,
                 organism=culture_report_input.organism,
+                resistance = culture_report_input.resistance,
                 Imaging=imaging,
             )
             culture_report.antibiotic_sensitivity.set(antibioticSensitivityList)
@@ -131,14 +132,14 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
         except Exception as e:
             print("Error: ", e)
             raise APIException(message=e, code=400)
-
-        if not inputs.draft:
-            patientObject.last_review_date = inputs.reviewDate
+        print(inputs.draft)
+        if inputs.draft == False:
+            patientObject.lastReviewDate = inputs.reviewDate
             patientObject.save()
-        else:
-            if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
-                form = PatientForm.objects.get(patient=inputs.patient, draft=True)
-                form.delete()
+
+        if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
+            form = PatientForm.objects.get(patient=inputs.patient, draft=True)
+            form.delete()
                 
         patientForm.save()
 

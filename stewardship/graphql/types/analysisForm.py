@@ -1,14 +1,6 @@
 import graphene
 from stewardship.graphql.types.patient import PatientObj
 from stewardship.graphql.types.patientDataForm import PatientDataFormObj
-from stewardship.models import (
-    Patient,
-    AnalysisForm,
-    DrugAdministeredReview,
-    PatientOutcome,
-    Compliance,
-    Recommendation,
-)
 
 
 class DrugAdministeredReviewObj(
@@ -78,5 +70,3 @@ class AnalysisFormObj(graphene.ObjectType, description="the AnalysisForm object"
     compliance = graphene.Field(lambda: ComplianceObj)
     recommendation = graphene.Field(lambda: RecommendationObj)
 
-    # def resolve_patient(self, info):
-    #     return Patient.objects.get(id=self.patient_id)

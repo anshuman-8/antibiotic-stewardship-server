@@ -59,7 +59,7 @@ class AnalysisForm(models.Model):
     recommendation = models.ForeignKey(
         "Recommendation", blank=True, on_delete=models.CASCADE
     )
-    draft = models.BooleanField(default=False)
+    # draft = models.BooleanField(default=False)
 
 
 class PatientForm(models.Model):

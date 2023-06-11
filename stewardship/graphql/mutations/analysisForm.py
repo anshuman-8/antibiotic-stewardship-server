@@ -84,16 +84,19 @@ class AnalysisDataForm(
                 drugAdministered=drugAdministeredReview,
                 patientOutcome=patientOutcome,
                 recommendation=recommendation,
-                draft = inputs.draft
+                # draft = inputs.draft
             )
 
         except Exception as e:
             raise APIException(message=e, code=400)
 
         analysisForm.save()
-        if input.draft == False:
-            patientFormObject.isAnalyzed=True
-            patientFormObject.save()
+        patientFormObject.isAnalyzed=True
+        patientFormObject.save()
+        
+        # if input.draft == False:
+        #     patientFormObject.isAnalyzed=True
+        #     patientFormObject.save()
 
         return AnalysisFormResponse(success=True, returning=analysisForm)
 

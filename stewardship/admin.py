@@ -19,7 +19,7 @@ class PatientFormAdmin(admin.ModelAdmin):
     #     "review_date",
     #     "review_department",
     #     "provisional_diagnosis",
-    # )   
+    # )
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -33,13 +33,14 @@ class UserAdmin(admin.ModelAdmin):
     list_filter = ("isStaff", "isAdmin")
     # search_fields = ("username", "email")
 
+
 class ClinicalSignsAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "date",
         "patient",
-        )
-    
+    )
+
 
 admin.site.register(User, UserAdmin)
 

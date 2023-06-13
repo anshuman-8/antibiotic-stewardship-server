@@ -37,11 +37,10 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.fullName + "-" + self.mrdNumber
-    
+
     @property
     def hasDraft(self):
         return self.patientform_set.filter(draft=True).exists()
-    
 
 
 class AnalysisForm(models.Model):
@@ -86,7 +85,7 @@ class PatientForm(models.Model):
 
     def __str__(self):
         return self.patient.fullName
-    
+
     @property
     def hasDraftAnalysis(self):
         return self.analysisform_set.filter(draft=True).exists()

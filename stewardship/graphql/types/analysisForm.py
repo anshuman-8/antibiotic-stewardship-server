@@ -69,4 +69,3 @@ class AnalysisFormObj(graphene.ObjectType, description="the AnalysisForm object"
     patientOutcome = graphene.Field(lambda: PatientOutcomeObj)
     compliance = graphene.Field(lambda: ComplianceObj)
     recommendation = graphene.Field(lambda: RecommendationObj)
-

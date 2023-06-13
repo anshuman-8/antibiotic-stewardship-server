@@ -1,6 +1,7 @@
 from django.db import models
 from choice import *
 
+
 class Patient(models.Model):
     id = models.BigAutoField(primary_key=True, null=False)
     fullName = models.CharField(max_length=100, verbose_name="Full Name")

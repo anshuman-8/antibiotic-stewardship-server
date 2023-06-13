@@ -91,9 +91,9 @@ class AnalysisDataForm(
             raise APIException(message=e, code=400)
 
         analysisForm.save()
-        patientFormObject.isAnalyzed=True
+        patientFormObject.isAnalyzed = True
         patientFormObject.save()
-        
+
         # if input.draft == False:
         #     patientFormObject.isAnalyzed=True
         #     patientFormObject.save()

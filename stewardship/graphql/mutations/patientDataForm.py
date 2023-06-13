@@ -30,7 +30,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
 
     @staticmethod
     def mutate(self, info, inputs: PatientFormInput):
-        print("\n\nPatient Data Form :   ",inputs)
+        print("\n\nPatient Data Form :   ", inputs)
         patientObject = Patient.objects.get(id=inputs.patient)
 
         sepsis = Sepsis.objects.create(
@@ -76,7 +76,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 specimen_type=culture_report_input.specimenType,
                 site_of_collection=culture_report_input.siteOfCollection,
                 organism=culture_report_input.organism,
-                resistance = culture_report_input.resistance,
+                resistance=culture_report_input.resistance,
                 Imaging=imaging,
             )
             culture_report.antibiotic_sensitivity.set(antibioticSensitivityList)
@@ -124,7 +124,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
                 focus_of_infection=focusOfInfection,
                 sepsis=sepsis,
                 isculture_report=True,
-                draft = inputs.draft
+                draft=inputs.draft,
             )
             patientForm.culture_report.set(culture_reports)
             patientForm.antibiotic_used.set(antibiotics_used)
@@ -140,7 +140,7 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
         if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
             form = PatientForm.objects.get(patient=inputs.patient, draft=True)
             form.delete()
-                
+
         patientForm.save()
 
         return PatientFormResponse(success=True, returning=patientForm)

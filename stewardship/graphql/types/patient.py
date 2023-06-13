@@ -30,7 +30,6 @@ class PatientObj(graphene.ObjectType, description="the Patient object"):
         if isinstance(self, Patient):
             # result = self.dob.strftime("%d-%m-%Y")
             return self.dateOfBirth
-        
 
     def resolve_dateOfAdmission(self, info):
         if isinstance(self, Patient):

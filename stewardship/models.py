@@ -23,16 +23,14 @@ class Patient(models.Model):
     patientLocation = models.CharField(
         max_length=100, choices=PATIENT_LOCATION, default=""
     )
-    # department=models.CharField(max_length=100, choices=DEPARTMENT, default="Select")
     department = models.CharField(max_length=100)
-    admittingDoctor = models.CharField(max_length=100)
+    admittingDoctor = models.CharField(max_length=100, blank=True)
     diagnostic = models.CharField(max_length=100)
-    cormorbodities = models.CharField(max_length=100)
+    cormorbodities = models.CharField(max_length=100, blank=True)
     height = models.CharField(max_length=100, blank=True)
     weight = models.CharField(max_length=100, blank=True)
     lastReviewDate = models.DateField(default=None, blank=True, null=True)
     lastAnalysisDate = models.DateField(default=None, blank=True, null=True)
-    # gender = models.CharField(max_length=10, choices=PATIENT_GENDER, default=None)
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -58,7 +56,6 @@ class AnalysisForm(models.Model):
     recommendation = models.ForeignKey(
         "Recommendation", blank=True, on_delete=models.CASCADE
     )
-    # draft = models.BooleanField(default=False)
 
 
 class PatientForm(models.Model):
@@ -92,7 +89,6 @@ class PatientForm(models.Model):
 
 
 class Sepsis(models.Model):
-    # id = models.AutoField(primary_key=True)
     isSepsis = models.BooleanField(default=False)
     isSepticShock = models.BooleanField(default=False)
     isNeutropenicSepsis = models.BooleanField(default=False)
@@ -185,7 +181,6 @@ class ClinicalSign(models.Model):
 
 
 class AntibioticSensitivity(models.Model):
-    # id = models.AutoField(primary_key=True)
     antibiotic = models.CharField(
         max_length=100, choices=ANTIBIOTIC_CHOICES, default="Select"
     )
@@ -222,9 +217,7 @@ class PatientOutcome(models.Model):
 
 
 class Compliance(models.Model):
-    # id = models.AutoField(primary_key=True)
     serum_creatinine = models.IntegerField(default=None)
-    # procalcitonin = models.IntegerField
     isAppropriate = models.BooleanField(default=False)
     isRightDocumentation = models.BooleanField(default=False)
     isRecommendationFiled = models.BooleanField(default=True)

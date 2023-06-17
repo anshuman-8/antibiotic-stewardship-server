@@ -48,6 +48,8 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
             isPrimaryBacteraemia=inputs.focusOfInfection.isPrimaryBacteraemia,
             isSecondaryBacteraemia=inputs.focusOfInfection.isSecondaryBacteraemia,
             isCatheterLinesStents=inputs.focusOfInfection.isCatheterLinesStents,
+            isCAI = inputs.focusOfInfection.isCAI,
+            isHAI = inputs.focusOfInfection.isHAI,
             other=inputs.focusOfInfection.other,
         )
 

@@ -106,6 +106,8 @@ class FocusOfInfection(models.Model):
     isPrimaryBacteraemia = models.BooleanField(default=False)
     isSecondaryBacteraemia = models.BooleanField(default=False)
     isCatheterLinesStents = models.BooleanField(default=False)
+    isCAI = models.BooleanField(default=False)
+    isHAI = models.BooleanField(default=False)
     other = models.CharField(max_length=100, default="")
 
     def __str__(self):
@@ -225,6 +227,7 @@ class Compliance(models.Model):
     isComplance = models.BooleanField(default=False)
     isDuration = models.BooleanField(default=False)
     isAntibiotisDoseChanged = models.BooleanField(default=False)
+    comments = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.serum_creatinine

@@ -73,6 +73,7 @@ class AnalysisDataForm(
             isRecommendationFiled=inputs.compliance.isRecommendationFiled,
             isAntibiotisDoseChanged=inputs.compliance.isAntibiotisDoseChanged,
             isComplance=inputs.compliance.isComplance,
+            comments=inputs.compliance.comments,
         )
 
         try:

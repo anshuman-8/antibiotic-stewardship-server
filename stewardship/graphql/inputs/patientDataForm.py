@@ -40,6 +40,8 @@ class FocusOfInfectionInput(graphene.InputObjectType):
     isPrimaryBacteraemia = graphene.Boolean()
     isSecondaryBacteraemia = graphene.Boolean()
     isCatheterLinesStents = graphene.Boolean()
+    isCAI = graphene.Boolean()
+    isHAI = graphene.Boolean()
     other = graphene.String()
 
 

@@ -1,13 +1,5 @@
 import graphene
 from stewardship.graphql.types.patient import PatientObj
-from stewardship.models import (
-    Patient,
-    Sepsis,
-    FocusOfInfection,
-    CultureReport,
-    Antibiotic,
-    ClinicalSign,
-)
 
 
 class SepsisObj(graphene.ObjectType, description="Sepsis object"):
@@ -27,6 +19,8 @@ class FocusOfInfectionObj(graphene.ObjectType, description="Focus of Infection o
     isPrimaryBacteraemia = graphene.Boolean()
     isSecondaryBacteraemia = graphene.Boolean()
     isCatheterLinesStents = graphene.Boolean()
+    isCAI = graphene.Boolean()
+    isHAI = graphene.Boolean()
     other = graphene.String()
 
 
@@ -94,8 +88,6 @@ class ClinicalSignObj(graphene.ObjectType, description="Clinical Sign object"):
 
 
 # Main PatientDataForm object
-
-
 class PatientDataFormObj(graphene.ObjectType, description="the PatientDataForm object"):
     id = graphene.ID()
     patient = graphene.Field(lambda: PatientObj)

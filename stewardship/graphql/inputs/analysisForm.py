@@ -36,6 +36,7 @@ class ComplianceInput(graphene.InputObjectType, description="Compliance Input"):
     isComplance = graphene.Boolean()
     isDuration = graphene.Boolean()
     isAntibiotisDoseChanged = graphene.Boolean()
+    comments = graphene.String()
 
 
 class RecommendationInput(

@@ -136,7 +136,6 @@ class CultureReport(models.Model):
 
     def __str__(self):
         data = self.organism + " " + self.specimen_type
-        # data = self.organism
         return data
 
 
@@ -227,7 +226,7 @@ class Compliance(models.Model):
     isComplance = models.BooleanField(default=False)
     isDuration = models.BooleanField(default=False)
     isAntibiotisDoseChanged = models.BooleanField(default=False)
-    comments = models.CharField(max_length=100, blank=True)
+    comments = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.serum_creatinine

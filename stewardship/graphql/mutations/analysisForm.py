@@ -33,6 +33,8 @@ class AnalysisDataForm(
         patientObject = Patient.objects.get(id=inputs.patient)
         patientFormObject = PatientForm.objects.get(id=inputs.patientForm)
 
+        print(inputs)
+
         drugAdministeredReview = DrugAdministeredReview.objects.create(
             isRightDocumentation=inputs.drugAdministeredReview.isRightDocumentation,
             isRightDrug=inputs.drugAdministeredReview.isRightDrug,
@@ -85,7 +87,6 @@ class AnalysisDataForm(
                 drugAdministered=drugAdministeredReview,
                 patientOutcome=patientOutcome,
                 recommendation=recommendation,
-                # draft = inputs.draft
             )
 
         except Exception as e:
@@ -98,7 +99,6 @@ class AnalysisDataForm(
         # if input.draft == False:
         #     patientFormObject.isAnalyzed=True
         #     patientFormObject.save()
-
         return AnalysisFormResponse(success=True, returning=analysisForm)
 
     Output = AnalysisFormResponse

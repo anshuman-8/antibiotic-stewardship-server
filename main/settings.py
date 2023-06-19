@@ -1,9 +1,12 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "bjdf8#g3)#=vnth3_jbee7ck3r)d810z1s=3611-20c#w(8p74##"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = True
 
@@ -70,9 +73,9 @@ WSGI_APPLICATION = "main.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "stewardship",
-        "USER": "anshuman",
-        "PASSWORD": "asdfghjk",
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER_NAME"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
         "HOST": "localhost",
         "PORT": "5432",
     }

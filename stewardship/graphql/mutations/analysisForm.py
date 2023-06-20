@@ -96,9 +96,6 @@ class AnalysisDataForm(
         patientFormObject.isAnalyzed = True
         patientFormObject.save()
 
-        # if input.draft == False:
-        #     patientFormObject.isAnalyzed=True
-        #     patientFormObject.save()
         return AnalysisFormResponse(success=True, returning=analysisForm)
 
     Output = AnalysisFormResponse

@@ -7,8 +7,8 @@ from stewardship.graphql.types.patientDataForm import (
 
 
 class PatientDataFormQuery(graphene.ObjectType):
-    forms = graphene.List(PatientDataFormObj)
-    form = graphene.Field(PatientDataFormObj, id=graphene.ID())
+    patientForms = graphene.List(PatientDataFormObj)
+    patientForm = graphene.Field(PatientDataFormObj, id=graphene.ID())
     patientsForm = graphene.List(
         PatientDataFormObj,
         patientId=graphene.ID(required=True),
@@ -28,10 +28,10 @@ class PatientDataFormQuery(graphene.ObjectType):
     )
     getDraftForms = graphene.List(PatientDataFormObj)
 
-    def resolve_forms(self, info):
+    def resolve_patientForms(self, info):
         return PatientForm.objects.all()
 
-    def resolve_form(self, info, **kwargs):
+    def resolve_patientForm(self, info, **kwargs):
         id = kwargs.get("id")
         return PatientForm.objects.get(id=id)
 

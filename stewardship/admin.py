@@ -13,7 +13,7 @@ class AnalysisFormAdmin(admin.ModelAdmin):
 
 
 class PatientFormAdmin(admin.ModelAdmin):
-    list_display = ("id", "patient", "review_date")
+    list_display = ("patient", "review_date")
     # search_fields = (
     #     "patient",
     #     "review_date",
@@ -50,24 +50,24 @@ admin.site.register(AnalysisForm, AnalysisFormAdmin)
 
 admin.site.register(PatientForm, PatientFormAdmin)
 
-admin.site.register(Recommendation)
+# admin.site.register(Recommendation)
 
-admin.site.register(Sepsis)
+# admin.site.register(Sepsis)
 
-admin.site.register(FocusOfInfection)
+# admin.site.register(FocusOfInfection)
 
-admin.site.register(CultureReport)
+# admin.site.register(CultureReport)
 
-admin.site.register(Imaging)
+# admin.site.register(Imaging)
 
-admin.site.register(Antibiotic)
+# admin.site.register(Antibiotic)
 
-admin.site.register(ClinicalSign, ClinicalSignsAdmin)
+# admin.site.register(ClinicalSign, ClinicalSignsAdmin)
 
-admin.site.register(AntibioticSensitivity)
+# admin.site.register(AntibioticSensitivity)
 
-admin.site.register(DrugAdministeredReview)
+# admin.site.register(DrugAdministeredReview)
 
-admin.site.register(PatientOutcome)
+# admin.site.register(PatientOutcome)
 
-admin.site.register(Compliance)
+# admin.site.register(Compliance)

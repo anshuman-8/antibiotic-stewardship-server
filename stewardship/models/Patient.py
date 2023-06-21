@@ -1,5 +1,5 @@
 from django.db import models
-from choice import *
+from stewardship.choice import *
 
 
 class Patient(models.Model):
@@ -11,17 +11,19 @@ class Patient(models.Model):
     patientLocation = models.CharField(
         max_length=100, choices=PATIENT_LOCATION, default=""
     )
-    # department=models.CharField(max_length=100, choices=DEPARTMENT, default="Select")
     department = models.CharField(max_length=100)
-    admittingDoctor = models.CharField(max_length=100)
+    admittingDoctor = models.CharField(max_length=100, blank=True)
     diagnostic = models.CharField(max_length=100)
-    cormorbodities = models.CharField(max_length=100)
+    cormorbodities = models.CharField(max_length=100, blank=True)
     height = models.CharField(max_length=100, blank=True)
     weight = models.CharField(max_length=100, blank=True)
     lastReviewDate = models.DateField(default=None, blank=True, null=True)
     lastAnalysisDate = models.DateField(default=None, blank=True, null=True)
-    # gender = models.CharField(max_length=10, choices=PATIENT_GENDER, default=None)
     active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.fullName + "-" + self.mrdNumber
+
+    @property
+    def hasDraft(self):
+        return self.patientform_set.filter(draft=True).exists()

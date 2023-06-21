@@ -20,7 +20,7 @@ class DrugAdministeredReviewObj(
 
 class PatientOutcomeObj(graphene.ObjectType, description="Patient Outcome object"):
     id = graphene.ID()
-    lenght_of_stay = graphene.Int()
+    length_of_stay = graphene.Int()
     date_of_discharge = graphene.String()
     outcome = graphene.String()
 
@@ -35,7 +35,8 @@ class ComplianceObj(graphene.ObjectType, description="Compliance object"):
     isAntibioticChanged = graphene.Boolean()
     isComplance = graphene.Boolean()
     isDuration = graphene.Boolean()
-    isAntibiotisDoseChanged = graphene.Boolean()
+    isAntibioticDoseChanged = graphene.Boolean()
+    comments = graphene.String()
 
 
 class RecommendationObj(

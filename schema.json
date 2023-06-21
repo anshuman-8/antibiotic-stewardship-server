@@ -1816,7 +1816,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "lenghtOfStay",
+              "name": "lengthOfStay",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -3808,7 +3808,7 @@
             {
               "defaultValue": null,
               "description": null,
-              "name": "lenghtOfStay",
+              "name": "lengthOfStay",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",

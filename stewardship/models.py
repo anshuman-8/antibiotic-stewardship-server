@@ -206,14 +206,14 @@ class DrugAdministeredReview(models.Model):
 
 
 class PatientOutcome(models.Model):
-    lenght_of_stay = models.IntegerField()
+    length_of_stay = models.IntegerField()
     date_of_discharge = models.CharField(max_length=100)
     outcome = models.CharField(
         max_length=100, choices=PATIENT_OUTCOME, default="Select"
     )
 
     def __str__(self):
-        outcome = {"Outcome": self.outcome, "LOS": self.lenght_of_stay}
+        outcome = {"Outcome": self.outcome, "LOS": self.length_of_stay}
         return outcome
 
 
@@ -225,7 +225,7 @@ class Compliance(models.Model):
     isAntibioticChanged = models.BooleanField(default=False)
     isComplance = models.BooleanField(default=False)
     isDuration = models.BooleanField(default=False)
-    isAntibiotisDoseChanged = models.BooleanField(default=False)
+    isAntibioticDoseChanged = models.BooleanField(default=False)
     comments = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):

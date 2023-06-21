@@ -20,7 +20,7 @@ class DrugAdministeredReviewInput(
 class PatientOutcomeInput(
     graphene.InputObjectType, description="Patient Outcome Input"
 ):
-    lenght_of_stay = graphene.Int()
+    length_of_stay = graphene.Int()
     date_of_discharge = graphene.String()
     outcome = graphene.String()
 
@@ -35,7 +35,7 @@ class ComplianceInput(graphene.InputObjectType, description="Compliance Input"):
     isAntibioticChanged = graphene.Boolean()
     isComplance = graphene.Boolean()
     isDuration = graphene.Boolean()
-    isAntibiotisDoseChanged = graphene.Boolean()
+    isAntibioticDoseChanged = graphene.Boolean()
     comments = graphene.String()
 
 

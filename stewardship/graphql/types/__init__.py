@@ -6,7 +6,7 @@ from .analysisForm import AnalysisFormObj
 
 # class ReportObj(graphene.ObjectType, description="Patient daily Object"):
 #     id = graphene.ID()
-#     lenght_of_stay = graphene.Int()
+#     length_of_stay = graphene.Int()
 #     date_of_discharge = graphene.String()
 #     outcome = graphene.String()
 

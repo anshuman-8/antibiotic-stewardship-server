@@ -213,8 +213,8 @@ class PatientOutcome(models.Model):
     )
 
     def __str__(self):
-        outcome = {"Outcome": self.outcome, "LOS": self.length_of_stay}
-        return outcome
+        # outcome = {"Outcome": self.outcome, "LOS": self.length_of_stay}
+        return self.outcome+" - Duration-"+self.length_of_stay+"Days"
 
 
 class Compliance(models.Model):

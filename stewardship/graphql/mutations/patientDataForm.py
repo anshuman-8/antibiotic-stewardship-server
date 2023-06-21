@@ -148,7 +148,3 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
         return PatientFormResponse(success=True, returning=patientForm)
 
     Output = PatientFormResponse
-
-
-class Mutation(graphene.ObjectType):
-    patientDataForm = PatientDataForm.Field()

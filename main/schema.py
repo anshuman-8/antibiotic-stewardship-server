@@ -1,11 +1,6 @@
 import graphene
 import graphql_jwt
-from stewardship.graphql.query import (
-    UserQuery,
-    PatientQuery,
-    PatientDataFormQuery,
-    AnalysisFormQuery,
-)
+from stewardship.graphql.query import *
 from stewardship.graphql.mutations import Mutations
 
 

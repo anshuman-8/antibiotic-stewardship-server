@@ -11,9 +11,9 @@ class PatientCreateInput(graphene.InputObjectType):
     # patient location is enum between ward or icu
     patientLocation = graphene.String(required=True)
     department = graphene.String(required=True)
-    admittingDoctor = graphene.String(required=True)
+    admittingDoctor = graphene.String()
     diagnostic = graphene.String(required=True)
-    cormorbodities = graphene.String(required=True)
+    cormorbodities = graphene.String()
     height = graphene.Int()
     weight = graphene.Int()
     # gender = graphene.String(required=True)

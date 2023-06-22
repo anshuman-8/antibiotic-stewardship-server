@@ -9,3 +9,9 @@ __all__ = [
     "PatientDataFormQuery",
     "AnalysisFormQuery",
 ]
+
+# class Query(graphene.ObjectType):
+#     UserQuery
+#     PatientQuery
+#     PatientDataFormQuery
+#     AnalysisFormQuery

@@ -30,7 +30,6 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
 
     @staticmethod
     def mutate(self, info, inputs: PatientFormInput):
-        print("\n\nPatient Data Form :   ", inputs)
         patientObject = Patient.objects.get(id=inputs.patient)
 
         sepsis = Sepsis.objects.create(
@@ -134,14 +133,19 @@ class PatientDataForm(graphene.Mutation, description="Patient Daily data form"):
         except Exception as e:
             print("Error: ", e)
             raise APIException(message=e, code=400)
-        print(inputs.draft)
+        
         if inputs.draft == False:
             patientObject.lastReviewDate = inputs.reviewDate
             patientObject.save()
 
-        if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
-            form = PatientForm.objects.get(patient=inputs.patient, draft=True)
-            form.delete()
+        try:
+            if PatientForm.objects.filter(patient=inputs.patient, draft=True).exists():
+                form = PatientForm.objects.get(patient=inputs.patient, draft=True)
+                form.delete()
+        # make a not found error
+        except Exception as e:
+            print("Error: ", e)
+            raise APIException(message=e, code=400)
 
         patientForm.save()
 

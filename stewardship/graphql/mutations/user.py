@@ -17,16 +17,21 @@ class CreateUser(graphene.Mutation, description="Create a user"):
         )
 
     def mutate(self, info, inputs: UserCreateInput):
-        user = User.objects.create(
-            username=inputs.username,
-            email=inputs.email,
-            isStaff=inputs.isStaff,
-            isAdmin=inputs.isAdmin,
-            # first_name=inputs.firstName,
-            # last_name=inputs.lastName,
-        )
-        user.set_password(inputs.password)
-        user.save()
+        try:
+            user = User.objects.create(
+                username=inputs.username,
+                email=inputs.email,
+                isStaff=inputs.isStaff,
+                isAdmin=inputs.isAdmin,
+                # first_name=inputs.firstName,
+                # last_name=inputs.lastName,
+            )
+            user.set_password(inputs.password)
+            user.save()
+        except Exception as e:
+            return UserCreationResponse(success=False, returning={}, error={"message": str(e)})
+            # raise APIException(e)
+        
         return UserCreationResponse(success=True, returning=user)
 
     Output = UserCreationResponse

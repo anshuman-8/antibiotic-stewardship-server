@@ -31,6 +31,10 @@ class PatientForm(models.Model):
     def hasDraftAnalysis(self):
         return self.analysisform_set.filter(draft=True).exists()
     
+    @property
+    def isPatientActive(self):
+        return self.patient.active
+    
 
 class Sepsis(models.Model):
     isSepsis = models.BooleanField(default=False)

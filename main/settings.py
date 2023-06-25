@@ -22,13 +22,13 @@ AUTH_USER_MODEL = "stewardship.User"
 INSTALLED_APPS = [
     "stewardship",
     "graphene_django",
-    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [

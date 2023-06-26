@@ -12,6 +12,7 @@ def generate_csv_and_encode(patientId):
 
     patient_data = get_patient_details(patientId)
     csv_file_path = f'./reports/patient_{patientId}_details.csv'
+    
     fieldnames = [
         'Patient ID', 'Full Name', 'Date of Birth', 'MRD Number', 'Date of Admission',
         'Patient Location', 'Department', 'Admitting Doctor', 'Diagnostic', 'Comorbidities',

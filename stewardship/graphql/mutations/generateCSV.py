@@ -19,8 +19,12 @@ def generate_csv_and_encode(patientId):
         'Form ID', 'Is Analyzed', 'Review Date', 'Review Department', 'Provisional Diagnosis',
         'Final Diagnosis', 'Syndromic Diagnosis', 'Diagnosis Choice',
         'Culture Report', 'Antibiotic Used',
-        'Analysis Form ID', 'Analysis Date', 'Doctor', 'Drug Administered', 'Patient Outcome',
-        'Compliance', 'Recommendation'
+        'Analysis Form ID', 'Analysis Date', 'Reviewing Doctor', 'Drug Administered Review:','is Right Documentation',
+        'is Right Drug','is Right Dose','is Right Route','is Right Frequency','is Right Duration',
+        'is Right Indication','is Appropriate','Drug Administered Score',
+        'Compliance','Serum Creatinine','is Appropriate','is Right Documentation','is Right Recommendation',
+        'is Antibiotic changed','is Right Duration','is Antibiotic Dose Changed','Comments', 'Recommendation', 
+        'Patient Outcome','Lenght of Stay', 'Date of discharge','Outcome'
     ]
 
     try: 
@@ -58,11 +62,34 @@ def generate_csv_and_encode(patientId):
                     'Antibiotic Used': patient_form['antibiotic_used'],
                     'Analysis Form ID': patient_form['analysisForms'][0]['id'] if len(patient_form['analysisForms']) > 0 else (''),
                     'Analysis Date': patient_form['analysisForms'][0]['date'] if len(patient_form['analysisForms']) > 0 else (''),
-                    'Doctor': patient_form['analysisForms'][0]['doctor'] if len(patient_form['analysisForms']) > 0 else (''),
-                    'Drug Administered': patient_form['analysisForms'][0]['drugAdministered'] if len(patient_form['analysisForms']) > 0 else (''),
-                    'Patient Outcome': patient_form['analysisForms'][0]['patientOutcome'] if len(patient_form['analysisForms']) > 0 else (''),
-                    'Compliance': patient_form['analysisForms'][0]['compliance'] if len(patient_form['analysisForms']) > 0 else (''),
-                    'Recommendation': patient_form['analysisForms'][0]['recommendation'] if len(patient_form['analysisForms']) > 0 else ('')
+                    'Reviewing Doctor': patient_form['analysisForms'][0]['doctor'] if len(patient_form['analysisForms']) > 0 else (''),
+
+                    'Drug Administered Review:': 'Drug Administered Review:',
+                    'is Right Documentation': patient_form['analysisForms'][0]['isRightDocumentation'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Drug': patient_form['analysisForms'][0]['isRightDrug'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Dose': patient_form['analysisForms'][0]['isRightDose'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Route': patient_form['analysisForms'][0]['isRightRoute'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Frequency': patient_form['analysisForms'][0]['isRightFrequency'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Duration': patient_form['analysisForms'][0]['isRightDuration'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Indication': patient_form['analysisForms'][0]['isRightIndication'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Appropriate': patient_form['analysisForms'][0]['isAppropriate'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'Drug Administered Score': patient_form['analysisForms'][0]['score'] if len(patient_form['analysisForms']) > 0 else (''),
+                    
+                    'Compliance': "Compliance: ",
+                    'Serum Creatinine': patient_form['analysisForms'][0]['serum_creatinine'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Appropriate': patient_form['analysisForms'][0]['isAppropriate'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Documentation': patient_form['analysisForms'][0]['isRightDocumentation'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Recommendation': patient_form['analysisForms'][0]['isRecommendationFiled'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Antibiotic changed': patient_form['analysisForms'][0]['isAntibioticChanged'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Right Duration': patient_form['analysisForms'][0]['isRightDuration'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'is Antibiotic Dose Changed': patient_form['analysisForms'][0]['isAntibioticDoseChanged'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'Comments': patient_form['analysisForms'][0]['comments'] if len(patient_form['analysisForms']) > 0 else (''),
+
+                    'Recommendation': patient_form['analysisForms'][0]['recommendation'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'Patient Outcome': 'Patient Outcome: ',
+                    'Lenght of Stay': patient_form['analysisForms'][0]['length_of_stay'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'Date of discharge': patient_form['analysisForms'][0]['date_of_discharge'] if len(patient_form['analysisForms']) > 0 else (''),
+                    'Outcome': patient_form['analysisForms'][0]['outcome'] if len(patient_form['analysisForms']) > 0 else (''),
                 })
                 writer.writerow( patientCSVObject | newRow)
 
@@ -96,10 +123,8 @@ def get_patient_details(patient_id):
         },
         'patientForms': [],
     }
-    # print("\n\n\nthe data::",len(patient_forms))
-    i=0
+
     for patient_form in patient_forms:
-        i+=1
         patient_form_data = {
             'id': patient_form.id,
             'isAnalyzed': patient_form.isAnalyzed,
@@ -118,23 +143,12 @@ def get_patient_details(patient_id):
             if(patient_form.isAnalyzed):
                 analysis_forms = AnalysisForm.objects.filter(patientForm=patient_form)
                 for analysis_form in analysis_forms:
-                    compliance_data = {
-                        'serum_creatinine': analysis_form.compliance.serum_creatinine,
-                        'isAppropriate': analysis_form.compliance.isAppropriate,
-                        'isRightDocumentation': analysis_form.compliance.isRightDocumentation,
-                        'isRecommendationFiled': analysis_form.compliance.isRecommendationFiled,
-                        'isAntibioticChanged': analysis_form.compliance.isAntibioticChanged,
-                        # 'isCompliance': analysis_form.compliance.isCompliance,
-                        'isDuration': analysis_form.compliance.isDuration,
-                        'isAntibioticDoseChanged': analysis_form.compliance.isAntibioticDoseChanged,
-                        'comments': analysis_form.compliance.comments,
-                    }
-                    patient_outcome_data = {
-                        'length_of_stay': analysis_form.patientOutcome.length_of_stay,
-                        'date_of_discharge': analysis_form.patientOutcome.date_of_discharge,
-                        'outcome': analysis_form.patientOutcome.outcome,
-                    }
-                    drug_administered_data = {
+                    analysis_form_data = {
+                        'id': analysis_form.id,
+                        'date': analysis_form.date,
+                        'doctor': analysis_form.doctor,
+                        'recommendation': analysis_form.recommendation,
+                        # drug_administered_data
                         'isRightDocumentation': analysis_form.drugAdministered.isRightDocumentation,
                         'isRightDrug': analysis_form.drugAdministered.isRightDrug,
                         'isRightDose': analysis_form.drugAdministered.isRightDose,
@@ -144,23 +158,24 @@ def get_patient_details(patient_id):
                         'isRightIndication': analysis_form.drugAdministered.isRightIndication,
                         'isAppropriate': analysis_form.drugAdministered.isAppropriate,
                         'score': analysis_form.drugAdministered.score,
+                        # patient_outcome_data
+                        'length_of_stay': analysis_form.patientOutcome.length_of_stay,
+                        'date_of_discharge': analysis_form.patientOutcome.date_of_discharge,
+                        'outcome': analysis_form.patientOutcome.outcome,
+                        # compliance_data
+                        'serum_creatinine': analysis_form.compliance.serum_creatinine,
+                        'isAppropriate': analysis_form.compliance.isAppropriate,
+                        'isRightDocumentation': analysis_form.compliance.isRightDocumentation,
+                        'isRecommendationFiled': analysis_form.compliance.isRecommendationFiled,
+                        'isAntibioticChanged': analysis_form.compliance.isAntibioticChanged,
+                        'isDuration': analysis_form.compliance.isDuration,
+                        'isAntibioticDoseChanged': analysis_form.compliance.isAntibioticDoseChanged,
+                        'comments': analysis_form.compliance.comments,
                     }
-                    analysis_form_data = {
-                        'id': analysis_form.id,
-                        'date': analysis_form.date,
-                        'doctor': analysis_form.doctor,
-                        'recommendation': analysis_form.recommendation,
-                        # 'drugAdministered': analysis_form.drugAdministered,
-                        # 'patientOutcome': analysis_form.patientOutcome,
-                        # 'compliance': analysis_form.compliance,
-                    }
-                    analysis_form_data['compliance'] = compliance_data
-                    analysis_form_data['patientOutcome'] = patient_outcome_data
-                    analysis_form_data['drugAdministered'] = drug_administered_data
 
                     patient_form_data['analysisForms'].append(analysis_form_data)
         except Exception as e:
-            print("Error waala",e)
+            print("Error:",e)
 
         response['patientForms'].append(patient_form_data)
     return response

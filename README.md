@@ -20,7 +20,19 @@ python3 manage.py migrate
 ```bash
 python3 manage.py runserver
 ```
-<!-- create .env and set variable -->
+### create .env file and set variable
+
+```env
+DEVELOPMENT=True
+SECRET_KEY="<SECRET_KEY>"
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=stewardship
+DB_USER_NAME=<DATABASE_NAME>
+DB_PASSWORD=<DATABASE_PASSWORD>
+
+```
+Note: Replace <<v>values> with actual values
 
 ### Setting up Database
 
@@ -40,19 +52,7 @@ python3 manage.py runserver
     grant all privileges on database stewardship to hero;
     alter database stewardship owner to hero;
     ```
+Note: All above values given are dummy!
 
-4. In [settings.py](./main/settings.py) update DATABASES config
-
-    ```
-    DATABASES = {
-        ‘default’: {
-            ‘ENGINE’: ‘django.db.backends postgresql_psycopg2’,
-            ‘NAME’: 'stewardship',
-            ‘USER’ : ‘hero’,
-            ‘PASSWORD’ : 'stewardship@123',
-            ‘HOST’ : ‘localhost’,
-            ‘PORT’ : ‘5432’,
-            }
-        }
-    ```
+4. In [.env](./.env) update DATABASES confg
 

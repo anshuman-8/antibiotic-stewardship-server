@@ -119,7 +119,7 @@ class EditAnalysisForm(graphene.Mutation):
             analysis_form = AnalysisForm.objects.get(id=id)
         except AnalysisForm.DoesNotExist:
             raise APIException(message="Analysis form not found", code=400)
-        print(inputs)
+    
         try:
             analysis_form.doctor = inputs.doctor
 
@@ -223,7 +223,6 @@ class EditAnalysisForm(graphene.Mutation):
 
 
 def validate_boolean(value):
-    print(value)
     if value:
         return True
     else:

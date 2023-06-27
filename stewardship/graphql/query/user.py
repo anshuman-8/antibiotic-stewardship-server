@@ -11,5 +11,8 @@ class UserQuery(graphene.ObjectType):
         return User.objects.all()
 
     def resolve_user(self, info, **kwargs):
-        id = kwargs.get("id")
-        return User.objects.get(id=id)
+        try:
+            id = kwargs.get("id")
+            return User.objects.get(id=id)
+        except User.DoesNotExist:
+            return User.objects.none()

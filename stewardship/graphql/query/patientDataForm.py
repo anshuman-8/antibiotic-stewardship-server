@@ -61,4 +61,10 @@ class PatientDataFormQuery(graphene.ObjectType):
 
     def resolve_fetchDraftForms(self, info, **kwargs):
         patient = kwargs.get("patient")
-        return PatientForm.objects.filter(draft=True, patient=patient)
+        try:
+            return PatientForm.objects.filter(
+                draft=True, patient__id=patient, patient__active=True
+            )
+        except Patient.DoesNotExist:
+            return PatientForm.objects.none()
+        

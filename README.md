@@ -22,13 +22,13 @@ DEVELOPMENT=True
 SECRET_KEY="<SECRET_KEY>"
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=stewardship
-DB_USER_NAME=<DATABASE_NAME>
+DB_NAME=<DATABASE_NAME>
+DB_USER_NAME=<DATABASE_USER_NAME>
 DB_PASSWORD=<DATABASE_PASSWORD>
 
 ```
 
-- Note: Replace <<v>values> with actual values
+> **_NOTE:_** Replace <<v>values> with actual values
 
 ```bash
 pip install -r requirements.txt
@@ -52,13 +52,13 @@ python3 manage.py runserver
 
 3. Create a user with a password and DB and grant permission on DB from the user
     ```sql
-    create user hero;
+    create user <username>;
     create database stewardship;
-    alter role hero with password 'stewardship@123';
-    grant all privileges on database stewardship to hero;
-    alter database stewardship owner to hero;
+    alter role <username> with password 'stewardship@123';
+    grant all privileges on database stewardship to <username>;
+    alter database stewardship owner to <username>;
     ```
-Note: All above values given are dummy!
+> **_NOTE:_** All above values given are dummy!, replace `<username>` with your name
 
 4. In [.env](./.env) update DATABASES config
 

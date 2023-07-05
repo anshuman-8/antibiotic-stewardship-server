@@ -27,8 +27,8 @@ DB_USER_NAME=<DATABASE_USER_NAME>
 DB_PASSWORD=<DATABASE_PASSWORD>
 
 ```
-
 > **_NOTE:_** Replace <<v>values> with actual values
+  
 
 ```bash
 pip install -r requirements.txt
